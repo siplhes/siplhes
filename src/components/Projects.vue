@@ -2,6 +2,7 @@
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+
 const go = (route) => {
 	router.push(route)
 }
@@ -22,6 +23,7 @@ const projects = [
 		more: '/nsfwclothes',
 	},
 ]
+
 </script>
 
 <template>
