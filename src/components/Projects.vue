@@ -47,10 +47,7 @@ const projects = [
 							<a :href="project.url" target="_blank">View</a>
 						</button>
 
-						<button @click="go(project.more)" class="border border-slate-900 font-semibold text-center p-1 
-						rounded w-16 hover:bg-slate-900  hover:text-yellow-500 sm:w-20">
-						Details
-						</button>
+						<RouterLink :to="project.more">Read more</RouterLink>
 
 					</div>
 				</div>

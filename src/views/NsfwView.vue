@@ -19,9 +19,6 @@
             <li>Database: Utilizes Amazon Web Services RDS for secure data storage.</li>
             <li>Payment Gateway: Planned for future integration to enable seamless transactions.</li>
         </ul>
-
-
-
         <img src="../assets/nsfw1.webp" class="w-full">
     </section>
 
