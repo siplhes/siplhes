@@ -2,8 +2,10 @@ import './output.css'
 
 import { vScrollReveal } from 'vue-scroll-reveal'
 import { createApp } from 'vue'
+import { VueHeadMixin, createHead } from '@unhead/vue'
 import App from './App.vue'
 import router from './router'
+
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
 
@@ -16,10 +18,14 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(faTwitter, faGithub, faFacebook)
 
 const app = createApp(App)
+const head = createHead()
 
+
+app.mixin(VueHeadMixin)
 app.use(vScrollReveal)
 app.component('font-awesome-icon', FontAwesomeIcon)
 
 app.use(router)
 
 app.mount('#app')
+vn
