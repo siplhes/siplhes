@@ -16,7 +16,7 @@ const projects = [
 		more: '/nsfwclothes#project',
 	},
 	{
-		img: './src/assets/book.webp',
+		img: 'https://i.imgur.com/S003Xob.jpeg',
 		title: 'Book-a-Choose',
 		resume: 'Social platform for writers and readers to share their stories.',
 		url: 'https://book-a-choose.vercel.app/',
