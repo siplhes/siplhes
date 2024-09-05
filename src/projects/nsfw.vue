@@ -1,7 +1,7 @@
 <template>
     <section class="text-white min-h-screen max-w-4xl sm:min-h-0 h-auto
       pt-16 lg:pt-6 sm:w-10/12 space-y-6 leading-relaxed">
-        <div class="flex justify-center top-0">
+        <div id="project" class="flex justify-center top-0">
             <img src="../assets/nsfwlogo.png" class="w-1/2">
         </div>
         <h2 class="uppercase font-bold text-xl mb-5 sm:text-2xl md:text-3xl lg:text-4xl text-yellow-500">

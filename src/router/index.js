@@ -10,7 +10,7 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path:'/nsfw-clothes-store',
+      path:'/nsfwclothes',
       name:'nsfw',
       component: () => import('../projects/nsfw.vue')
     },

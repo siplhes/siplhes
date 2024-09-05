@@ -1,6 +1,29 @@
 <script setup>
-import { RouterLink  } from "vue-router";
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const go = (route) => {
+	router.push(route)
+}
+
+const projects = [
+	{
+		img: 'https://nsfwclothes.store/images/welcomebg.webp',
+		title: 'nsfwclothes.store website',
+		resume: 'Web store for NSFW clothes, appareals and accessories.',
+		url: 'https://nsfwclothes.store/',
+		more: '/nsfwclothes#project',
+	},
+	{
+		img: './src/assets/book.webp',
+		title: 'Book-a-Choose',
+		resume: 'Social platform for writers and readers to share their stories.',
+		url: 'https://book-a-choose.vercel.app/',
+		more: '/nsfwclothes',
+	},
+]
 </script>
+
 <template>
 	<section id="projects" class="text-white sm:min-h-0 h-auto pt-28 sm:pt-32 sm:w-10/12 ">
 		<h2 class="uppercase font-bold text-xl mb-6 sm:text-2xl md:text-3xl lg:text-4xl text-yellow-500">
@@ -22,43 +45,17 @@ import { RouterLink  } from "vue-router";
 							<a :href="project.url" target="_blank">View</a>
 						</button>
 
-						<RouterLink :to="project.more" class="border border-slate-900 font-semibold text-center p-1 
+						<button @click="go(project.more)" class="border border-slate-900 font-semibold text-center p-1 
 						rounded w-16 hover:bg-slate-900  hover:text-yellow-500 sm:w-20">
-							Details
-						</RouterLink>
+						Details
+						</button>
+
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 </template>
-
-<script>
-
-export default {
-	name: 'Projects',
-	data() {
-		return {
-			projects: [
-				{
-					img: 'https://nsfwclothes.store/images/welcomebg.webp',
-					title: 'nsfwclothes.store website',
-					resume: 'Web store for NSFW clothes, appareals and accessories.',
-					url: 'https://nsfwclothes.store/',
-					more: '/nsfw-clothes-store',
-				},
-				{
-					img: './src/assets/bookachoose.svg',
-					title: 'Book-a-Choose',
-					resume: 'Social platform for writers and readers to share their stories.',
-					url: 'https://book-a-choose.vercel.app/',
-					more: '/nsfw-clothes-store',
-				},
-			],
-		}
-	},
-}
-</script>
 
 <style scoped>
 .project-info {
@@ -70,5 +67,4 @@ export default {
 .project-img:hover .project-info {
 	transform: translateY(0);
 }
-
 </style>

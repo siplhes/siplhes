@@ -2,9 +2,9 @@
   <div class=" w-10/12 m-auto relative max-w-screen-xl 
   bg-gradient-to-bl from-[#15141E] to-[#15141E]">
     <Header />
-        <RouterView />
-        <Footer />
-   
+    <RouterView />
+    <Footer />
+
   </div>
 </template>
 
@@ -30,6 +30,4 @@ useSeoMeta({
 })
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
