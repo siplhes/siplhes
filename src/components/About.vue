@@ -1,6 +1,6 @@
 <template>
 	<section id="about" class="text-black sm:min-h-0 h-auto sm:w-10/12 lg:w-8/12 pt-20">
-		<div  class=" bg-yellow-500 rounded-lg p-4">
+		<div class=" bg-yellow-500 rounded-lg p-4">
 			<h2 class="uppercase font-bold text-xl mb-5 sm:text-2xl md:text-3xl lg:text-4xl">
 				About me
 			</h2>
@@ -17,6 +17,7 @@
 						:class="`timeline-${item.position} mb-10 md:text-${item.position === 'start' ? 'end' : 'start'}`">
 						<time class="font-mono italic">{{ item.year }}</time>
 						<div class="text-lg font-black">{{ item.title }}</div>
+						<div class="text-md font-semibold">{{ item.company }}</div>
 						{{ item.resume }}
 					</div>
 					<hr />
@@ -32,25 +33,37 @@ export default {
 	data() {
 		return {
 			item: [
-  {
-    position: 'start',
-    title: 'The Making of Me',
-    resume: 'Born in 1995.',
-    year: '1995',
-  },
-  {
-    position: 'end',
-    title: 'Bachelor of Science',
-    resume: 'Graduated from U.E Gnrl. Eduardo Perez in 2013.',
-    year: '2013',
-  },
-  {
-    position: 'start',
-    title: 'Graphic Design Studies',
-    resume: 'Pursued graphic design studies at Dr. Belloso Chacin University in 2016. Due to the challenging situation in Venezuela, I was forced to pause my studies in 2017 and relocate.',
-    year: '2016',
-  },
-]
+				{
+					position: 'start',
+					title: 'The Making of Me',
+					resume: 'Born in 1995.',
+					year: '1995',
+				},
+				{
+					position: 'end',
+					title: 'Bachelor of Science',
+					resume: 'Graduated from U.E Gnrl. Eduardo Perez in 2013.',
+					year: '2013',
+				},
+				{
+					position: 'start',
+					title: 'Graphic Design Studies',
+					resume: 'Pursued graphic design studies at Dr. Belloso Chacin University in 2016. Due to the challenging situation in Venezuela, I was forced to pause my studies in 2017 and relocate.',
+					year: '2016',
+				},
+				{
+					position: 'end',
+					title: 'Simple Machines Forum - Team Customizer',
+					resume: 'Responsible for planning and developing theme issues for the Simple Machines Forum (SMF).',
+					year: '2020-2021',
+				}, {
+					position: 'start',
+					title: 'Designer and Web Developer ',
+					resume: 'As the lead designer for the brand, my job is to decide what to do in the future, how we are going to do it and how it will look, both on social media accounts and on the website.',
+					year: '2023',
+					company: 'NSFW Clothing'
+				},
+			]
 
 			,
 		}

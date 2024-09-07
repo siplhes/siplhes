@@ -1,6 +1,6 @@
 <template>
 	<section id="home"
-		class="text-white pt-28 sm:min-h-0 h-auto sm:pt-32 text-lg sm:text-xl lg:text-2xl sm:w-10/12 lg:w-8/12">
+		class="text-white pt-24 sm:min-h-0 h-auto lg:pt-4 text-lg sm:text-xl lg:text-2xl sm:w-10/12 lg:w-8/12">
 
 		<div class="grid  grid-cols-1 gap-4 max-md:justify-center">
 			<div class="flex items-center max-sm:flex-col bg-transparent gap-4 rounded-lg 
@@ -20,7 +20,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="flex justify-center mt-12 space-x-6">
+		<div class="flex justify-center mt-6 space-x-6">
 			<a v-for="(social, index) in socialNetwork" :key="index" :href="social.link" target="_blank"
 				class="text-6xl text-white hover:text-yellow-500 p-2 rounded-full">
 				<FontAwesomeIcon :icon="`fa-brands fa-${social.icon}`" />
@@ -49,6 +49,14 @@ export default {
 				{
 					icon: 'facebook',
 					link: 'https://fb.com/siplhes',
+				},
+				{
+					icon: 'whatsapp',
+					link: 'https://wa.me/584127698781',
+				},
+				{
+					icon: 'instagram',
+					link: 'https://instagram.com/siplhes',
 				},
 
 			],

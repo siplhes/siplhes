@@ -12,3 +12,8 @@ scroll-behavior: smooth;
 body {
 background: ;
 }
+
+/*
+npx tailwindcss -i ./src/input.css -o ./src/output.css
+npx tailwindcss -i ./src/style.css -o ./src/assets/main.css --watch
+*/
