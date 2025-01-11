@@ -51,7 +51,7 @@ const projects = [
 						<div class="card-actions justify-end p-4">
 							<button class="border border-slate-900 font-semibold text-center p-1 
 						rounded w-16 bg-yellow-500 text-slate-900 hover:bg-yellow-600  sm:w-20">
-								<a :href="project.url" target="_blank">View</a>
+								<a :href="project.url" target="_blank">Link</a>
 							</button>
 
 							<RouterLink class="border border-slate-900 font-semibold text-center p-1 
