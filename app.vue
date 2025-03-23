@@ -4,7 +4,7 @@
   <NuxtPage />
 </main>
 </template>
-<script>
+<script setup>
 import '~/assets/css/app.css'
 </script>
 <style lang="scss">

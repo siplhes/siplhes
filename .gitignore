@@ -17,9 +17,8 @@ logs
 .DS_Store
 .fleet
 .idea
-
+package-lock.json
 # Local env files
 .env
 .env.*
 !.env.example
-package-lock.json
