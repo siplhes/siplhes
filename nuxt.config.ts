@@ -23,6 +23,7 @@ export default defineNuxtConfig({
     classSuffix: '',
   },
   tailwindcss: {
+    configPath: '~/tailwind.config.js',
     cssPath: "~/assets/app.css",
     config: {},
     viewer: true,
