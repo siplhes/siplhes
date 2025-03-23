@@ -55,7 +55,7 @@
       <!-- Futuro -->
       <section class="space-y-4">
          <h2 class="text-2xl font-bold border-b-2 border-[#fefffa] pb-2">Futuro</h2>
-        <p class="text-lg leading-relaxed text-gray-400">
+        <div class="text-lg leading-relaxed text-gray-400">
           Cambios propuestos para el futuro:
           <ul>
             <li>Sistema de manejo de productos</li>
@@ -65,36 +65,19 @@
             <li>Mejoras en el carrito de compras</li>
             <li>Pasarela de pagos (Paypal, Binance, etc)</li>
           </ul>
-        </p>
+        </div>
       </section>
 
       <!-- Producto Final -->
       <section class="space-y-4">
           <h2 class="text-2xl font-bold border-b-2 border-[#fefffa] pb-2">Final product</h2>
-        <div class="carousel w-full rounded-box shadow-lg">
-          <div id="slide1" class="carousel-item relative w-full">
+
             <NuxtImg
               src="/images/nsfw1.webp"
               class="w-full object-cover"
               alt="Captura de pantalla del proyecto 1"
             />
-            <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-              <a href="#slide4" class="btn btn-circle glass">❮</a> 
-              <a href="#slide2" class="btn btn-circle glass">❯</a>
-            </div>
-          </div>
-          <div id="slide2" class="carousel-item relative w-full">
-            <NuxtImg
-              src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp"
-              class="w-full object-cover"
-              alt="Captura de pantalla del proyecto 2"
-            />
-            <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-              <a href="#slide1" class="btn btn-circle glass">❮</a> 
-              <a href="#slide3" class="btn btn-circle glass">❯</a>
-            </div>
-          </div>
-        </div>
+
       </section>
     </div>
   </div>

@@ -1,7 +1,7 @@
 <template>
-  <nav class="navbar bg-base-100 shadow-sm mb-4">
+  <nav class="navbar bg-base-100 shadow-sm mb-4 pt-3">
     <div class="flex-1">
-      <a class="btn btn-ghost text-xl">Siplhes</a>
+      <NuxtLink to="/" class="normal-case text-xl">Siplhes</NuxtLink>
     </div>
     <!--  <ThemeChanger />-->
     <div class="flex-none">
