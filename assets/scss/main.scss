@@ -1,16 +1,89 @@
 @tailwind base;
-@tailwind components; 
-@tailwind utilities;  
+@tailwind components;
+@tailwind utilities;
 
-
+// Fuente principal
 $font-stack: Helvetica, sans-serif;
-$primary-color: #fefffa;
-$primary-background-color: #333;
 
+// Colores ajustados para mejor contraste y armonía
+$primary-color: #30405d; // Azul grisáceo principal
+$primary-color-dark: #151c29; // Versión más oscura
+$secondary-color: #d2807f; // Rojo/rosa suavizado
+$secondary-color-dark: #b56968; // Versión más oscura del secundario
+$tertiary-color: #90aebb; // Azul claro para acentos
+$tertiary-color-dark: #708090; // Versión mas oscura del terciario
+// Texto y fondo
+$text-black: #121212;
+$text-white: #ffffff;
+$text-title: #30405d; // Puedes usar este color en títulos
+$primary-background-color: #b56968; // Fondo principal, tono pastel
+
+
+* {
+  font-family: 'Heebo', sans-serif;
+  @apply max-w-6xl mx-auto px-4;
+}
+// 1. Base global
 body {
   font: 100% $font-stack;
-  color: $primary-color;
+  color: $text-white;
+  background: $primary-background-color;
+
+  // Color de selección de texto
+  @apply selection:bg-[#d2807f] selection:text-white;
 }
-.email{
-  @apply text-yellow-500;
+
+// 2. Contenedor principal
+main {
+  background: $primary-color;
+  @apply m-2 p-4 rounded-lg;
+}
+
+// 3. Email destacado
+.email {
+  color: $secondary-color;
+  @apply text-lg font-black;
+}
+
+// 4. Íconos sociales
+.social-icons {
+  color: $secondary-color;
+}
+
+// 5. Tech Icons (chips o etiquetas de tecnologías)
+.tech-icons {
+  background:$primary-color-dark;
+  color: $text-white;
+  &:hover {
+    background: $secondary-color;
+    color: $text-white;
+  }
+  @apply p-2 rounded transition-all duration-300 font-mono;
+}
+
+// 6. Título de proyecto
+.project-title {
+  color: $primary-color;
+  @apply text-lg lg:text-xl font-bold text-center lg:text-left;
+}
+
+// 7. Botón general
+.btn {
+  background: $secondary-color;
+  color: $text-white;
+  @apply p-2 rounded transition-all duration-300 w-full text-center font-semibold;
+
+  &:hover {
+    background: $secondary-color-dark;
+  }
+}
+
+// 8. Logo NSFW (ejemplo)
+.nsfwlogo {
+  color: $text-white;
+  @apply text-3xl;
+
+  &:hover {
+    color: $secondary-color;
+  }
 }
