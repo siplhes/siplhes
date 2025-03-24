@@ -1,9 +1,13 @@
 <template>
 <main>
   <Nav />
-  <NuxtPage />
+  <NuxtPage 
+
+  />
 </main>
 </template>
 <style lang="scss">
 @use "~/assets/scss/main.scss";
+
+
 </style>

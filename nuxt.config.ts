@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     "@nuxt/scripts",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/color-mode",
+    "@nuxtjs/i18n",
   ],
   colorMode: {
     preference: "system",
@@ -27,5 +28,13 @@ export default defineNuxtConfig({
     config: {},
     viewer: true,
     exposeConfig: true,
+  },
+  i18n: {
+    vueI18n: "~/i18n.config.ts",
+    locales: [
+      { code: "en", language: "en-US" },
+      { code: "es", language: "es-ES" },
+    ],
+    defaultLocale: "en",
   },
 });
