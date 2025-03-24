@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: false },
-  css: ["~/assets/css/app.css", "~/assets/scss/main.scss"],
+  css: ["~/assets/scss/main.scss"],
   app: {
     head: {
       charset: "utf-16",
@@ -24,7 +24,6 @@ export default defineNuxtConfig({
   },
   tailwindcss: {
     configPath: "~/tailwind.config.js",
-    cssPath: "~/assets/app.css",
     config: {},
     viewer: true,
     exposeConfig: true,

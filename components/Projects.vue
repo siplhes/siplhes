@@ -1,10 +1,13 @@
 <script setup>
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
 const projects = [
   {
     img: "/images/nsfw.webp",
-    title: "NSFW Clothes site",
-    resume:
-      "SPA para una marca de ropa, Me encargue de todo el desarollo del sitio utilizando Nuxt.js y Vue.js que viene integrado para el front-end junto con Tailwind y utilizando una RESTApi como Back-end utilizando Node.js + Fastify",
+    title: t('nsfw.title'),
+    resume: t('nsfw.description'),
     url: "https://nsfwclothes.store/",
     more: "/nsfwclothes#project",
     techs: [
@@ -19,10 +22,9 @@ const projects = [
   },
   {
     img: "/images/book.webp",
-    title: "Book-a-Choose",
-    resume:
-      "Personal project about a Social platform for writers and readers to share their stories, i worked with Nuxt.JS and Tailwind CSS for Front-end working with Node.js and Express + MySql for back-end RESTApi.",
-    url: "https://bookachoose.vercel.app",
+    title: t('bac.title'),
+    resume: t('bac.description'),
+     url: "https://bookachoose.vercel.app",
     more: "/bookachoose#project",
     techs: [
       "Nuxt.js",
@@ -41,7 +43,7 @@ const projects = [
 
 <template>
   <section class="projects-section card">
-    <h1 class="projects-title">Projects</h1>
+    <h1 class="projects-title">{{ t("projects_title") }}</h1>
     <div v-for="(project, index) in projects" :key="index" class="project-card">
       <div class="project-grid">
         <figure class="project-image">
@@ -55,17 +57,13 @@ const projects = [
             <h2 class="project-title">{{ project.title }}</h2>
             <p class="project-resume">{{ project.resume }}</p>
             <ul class="project-techs">
-              <li
-                v-for="(techs, index) in project.techs"
-                :key="index"
-                class="tech-item"
-              >
+              <li v-for="(techs, index) in project.techs" :key="index" class="tech-item" >
                 > {{ techs }}
               </li>
             </ul>
             <div class="project-actions ">
-              <NuxtLink class="btn" :to="project.url" target="_blank">Link</NuxtLink>
-              <NuxtLink class="btn" :to="project.more">Learn More</NuxtLink>
+              <NuxtLink class="btn" :to="project.url" target="_blank">{{ t("visit") }}</NuxtLink>
+              <NuxtLink class="btn" :to="project.more">{{ t("learn_more") }}</NuxtLink>
             </div>
           </div>
         </div>

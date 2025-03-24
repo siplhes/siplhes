@@ -3,11 +3,7 @@
     <div class="text-center">
       <p class="text-lg">
         Contact:
-        <button
-          class="email"
-          data-tip="Copy to clipboard"
-          @click="copyToClipboard"
-        >
+        <button class="email" data-tip="Copy to clipboard" @click="copyToClipboard">
           siplhes@gmail.com 📋
         </button>
       </p>
@@ -25,8 +21,7 @@
           v-for="(skill, index) in sortedSkills"
           :key="index"
           class="tech-icons"
-        >
-          {{ skill }}
+        > > {{ skill }}
         </li>
       </ul>
     </div>
@@ -78,9 +73,6 @@ const { copyToClipboard } = useClipboard("siplhes@gmail.com");
   @apply rounded-lg p-6;
 }
 
-.email {
-  @apply text-blue-500 font-semibold hover:underline;
-}
 
 .tooltip {
   @apply relative cursor-pointer;
