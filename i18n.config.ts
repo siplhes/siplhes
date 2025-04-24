@@ -5,6 +5,7 @@ export default defineI18nConfig(() => ({
   fallbackLocale: "en",
   messages: {
     en: {
+      projects: "Projects",
       hello: "Hello there, i'm",
       description:
         "   Web Developer with 7+ years of experience. Over 3 years building things with Laravael and in love with Vue.js for 2 years.",
@@ -115,8 +116,47 @@ export default defineI18nConfig(() => ({
             "Adding a subscription system to allow users to support writers and readers and profit from their content.",
         },
       },
+      az: {
+        title: "Adopta Zulia",
+        description:
+          "Personal project about a red de adopciones para mi ciudad, para facilitar el proceso de adopcion y mejorar la calidad de vida de los animalitos sin hogar.",
+        purpose:
+          "Principal purpose of develop this project was give a platform to writers and readers to share their stories and learn how this kind of platforms works, giving the user a superb experience supported by our own experience in others platforms and user's suggestions.",
+        objective:
+          "The main objective besides brings a great experience to users is learn and practice our skills in different frameworks and libraries via this personal project, to improve our knowledge.",
+        approach:
+          "REST API was the main approach to develop this project, using Node.js and Fastify as a backend.",
+        duration: "I've worked on this project for about +7 months.",
+        role: "This is my personal project, so I was responsible for everything from planning and design to development and testing.",
+        characteristics: {
+          title: "Project characteristics:",
+          item1:
+            "User authentication provided by Firebase Auth, allowing users to create accounts and log in.",
+          item2:
+            "Users can create and manage their own profiles, including profile picture, username, and bio, ",
+          item3:
+            "Users can clearly create and manage their stories(books) and the chapters of these books, with a title, content, and cover image.",
+        },
+        future_enhancements: {
+          title: "Planned future improvements:",
+          item1: "Improve performance, auth, security and user experience.",
+          item2:
+            "Add more social tools for users to connect with other writers and readers.",
+          item3:
+            "Build a chat feature to enable users to communicate with other writers and readers.",
+          item4:
+            "Improve SEO and build a tag system to allow users to find their stories easily.",
+          item5:
+            "Add a search engine to make it easier for users to find their stories.",
+          item6:
+            "Implementing a responsive design to ensure that the website looks and functions well on different devices and screen sizes.",
+          item7:
+            "Adding a subscription system to allow users to support writers and readers and profit from their content.",
+        },
+      },
     },
     es: {
+      projects: "Proyectos",
       hello: "Hola, soy",
       description:
         "Desarrollador Web con más de 7 años de experiencia. Más de 3 años construyendo proyectos con Laravel y enamorado de Vue.js durante los últimos 2 años.",
@@ -187,6 +227,46 @@ export default defineI18nConfig(() => ({
       },
       bac: {
         title: "Book-a-Choose",
+        description:
+          "Proyecto personal: Plataforma social para escritores y lectores compartir sus historias. Utilicé Nuxt.js y Tailwind CSS para el front-end, trabajando con Node.js y Express + MySQL para la API REST del back-end.",
+        purpose:
+          "El propósito principal de desarrollar este proyecto fue proporcionar una plataforma para que escritores y lectores compartan sus historias y entender cómo funcionan este tipo de plataformas, ofreciendo una experiencia excepcional apoyada en nuestra propia experiencia y sugerencias de usuarios.",
+        objective:
+          "El objetivo principal, además de ofrecer una gran experiencia a los usuarios, es aprender y practicar habilidades con diferentes frameworks y bibliotecas mediante este proyecto personal, para mejorar nuestro conocimiento.",
+        approach:
+          "El enfoque principal fue desarrollar una API REST utilizando Node.js y Fastify como back-end.",
+        duration:
+          "He trabajado en este proyecto durante aproximadamente más de 7 meses.",
+        role: "Al ser mi proyecto personal, fui responsable de todo: desde la planificación y diseño hasta el desarrollo y pruebas.",
+        characteristics: {
+          title: "Características del proyecto:",
+          item1:
+            "Autenticación de usuarios proporcionada por Firebase Auth, permitiendo crear cuentas e iniciar sesión.",
+          item2:
+            "Los usuarios pueden crear y gestionar sus perfiles, incluyendo foto de perfil, nombre de usuario y biografía.",
+          item3:
+            "Los usuarios pueden crear y gestionar claramente sus historias (libros) y los capítulos de estos, con título, contenido e imagen de portada.",
+        },
+        future_enhancements: {
+          title: "Mejoras futuras planeadas:",
+          item1:
+            "Mejorar rendimiento, autenticación, seguridad y experiencia de usuario.",
+          item2:
+            "Añadir más herramientas sociales para que los usuarios se conecten con otros escritores y lectores.",
+          item3:
+            "Construir un sistema de chat para permitir la comunicación entre usuarios.",
+          item4:
+            "Mejorar el SEO e implementar un sistema de etiquetas para facilitar la búsqueda de historias.",
+          item5:
+            "Añadir un motor de búsqueda para facilitar la localización de historias.",
+          item6:
+            "Implementar un diseño responsivo que funcione bien en diferentes dispositivos y tamaños de pantalla.",
+          item7:
+            "Añadir un sistema de suscripciones para permitir a los usuarios apoyar a los escritores y obtener beneficios de su contenido.",
+        },
+      }, 
+      az: {
+        title: "Adopta Zulia",
         description:
           "Proyecto personal: Plataforma social para escritores y lectores compartir sus historias. Utilicé Nuxt.js y Tailwind CSS para el front-end, trabajando con Node.js y Express + MySQL para la API REST del back-end.",
         purpose:

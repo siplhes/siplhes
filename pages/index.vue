@@ -3,6 +3,7 @@
     <Hello />
     <div class="divider"/>
     <About />
+    <TechStack/>
     <div class="divider"/>
     <Projects/>
   </main>

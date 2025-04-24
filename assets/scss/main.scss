@@ -21,32 +21,32 @@ $primary-background-color: #b56968; // Fondo principal, tono pastel
 
 * {
   font-family: 'Heebo', sans-serif;
-  @apply max-w-6xl mx-auto px-4;
+  @apply w-full;
 }
 
 body {
   font: 100% $font-stack;
   color: $text-white;
-  background: $primary-background-color;
-
   @apply selection:bg-[#d2807f] selection:text-white;
 }
 
 main {
-  background: $primary-color;
-  @apply m-2 p-4 rounded-lg;
+ @apply bg-[#121212];
 }
 
 .email {
   color: $secondary-color;
   text-decoration: none;
-  @apply text-lg font-black;
+  @apply text-lg font-bold;
 }
 
 .social-icons {
-  color: $secondary-color;
+  color: #121212;
 }
 
+.my-image{
+    @apply w-64 h-64 object-cover rounded-full;
+}
 .tech-icons {
   background: $primary-color-dark;
   color: $text-white;
@@ -119,15 +119,15 @@ main {
 }
 
 .grid-container {
-  @apply grid gap-4 md:grid-flow-col;
+  @apply max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 p-4;
 }
 
 .image-wrapper {
-  @apply p-2 rounded-xl;
+  @apply p-2 mx-auto rounded-xl;
 }
 
 .image {
-  @apply rounded-xl object-cover;
+  @apply rounded-xl mx-auto object-cover;
 }
 
 .text-wrapper {
