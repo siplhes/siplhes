@@ -4,17 +4,20 @@
       $t("back_button")
     }}</NuxtLink>
     <div class="flex  justify-center mb-12">
-      <azLogo class="azlogo" />
-    </div>
+            <NuxtImg
+            src="/images/az.webp"
+            class="project-image"
+            alt="Project logo"
+          />   </div>
     <div class="flex flex-row items-center justify-center">
       <h1 class="basis-2/3 project-title">
         {{ $t("az.title") }}
       </h1>
       <NuxtLink
-        to="https://azclothes.store"
+        to="https://adopta-zulia.vercel.app"
         target="_blank"
         class="btn basis-1/3 "
-        >{{$t("visit") }} <Icon name="icon-park-outline:link-one" class="fill-[#fefffa]"
+        >{{$t("visit") }} <Icon name="icon-park-outline:link-one" class="fill-[#fefffa]" 
       />
     </NuxtLink>
     </div>
@@ -65,10 +68,7 @@
           <ul class="list-disc pl-5">
             <li>{{ $t("az.future_enhancements.item1") }}</li>
             <li>{{ $t("az.future_enhancements.item2") }}</li>
-            <li>{{ $t("az.future_enhancements.item3") }}</li>
-            <li>{{ $t("az.future_enhancements.item4") }}</li>
-            <li>{{ $t("az.future_enhancements.item5") }}</li>
-            <li>{{ $t("az.future_enhancements.item6") }}</li>
+                        <li>{{ $t("az.future_enhancements.item3") }}</li>
           </ul>
         </div>
       </section>
@@ -98,3 +98,8 @@ useSeoMeta({
 });
 </script>
 
+<style scoped>
+.project-image {
+  @apply col-span-1 object-cover rounded-md h-80;
+} 
+</style>

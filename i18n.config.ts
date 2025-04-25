@@ -119,41 +119,34 @@ export default defineI18nConfig(() => ({
       az: {
         title: "Adopta Zulia",
         description:
-          "Personal project about a red de adopciones para mi ciudad, para facilitar el proceso de adopcion y mejorar la calidad de vida de los animalitos sin hogar.",
+          "Personal project: Platform to streamline pet adoption. I used Nuxt.js and Tailwind CSS for the front–end and Firebase and AWS for the backend.",
         purpose:
-          "Principal purpose of develop this project was give a platform to writers and readers to share their stories and learn how this kind of platforms works, giving the user a superb experience supported by our own experience in others platforms and user's suggestions.",
+          "The main purpose was inspired by a real experience: a homeless kitten arrived at my house, and since I already have many pets, I wanted to put it up for adoption. That’s when I decided to create a platform to help homeless animals by expediting the process, making adoptions more effective in my city, which greatly needs it due to a growing demand from animals seeking homes.",
         objective:
-          "The main objective besides brings a great experience to users is learn and practice our skills in different frameworks and libraries via this personal project, to improve our knowledge.",
+          "The primary objective—aside from offering a great user experience—is to learn and practice skills with different frameworks and libraries through this personal project, thereby improving our knowledge.",
         approach:
-          "REST API was the main approach to develop this project, using Node.js and Fastify as a backend.",
-        duration: "I've worked on this project for about +7 months.",
-        role: "This is my personal project, so I was responsible for everything from planning and design to development and testing.",
+          "The main approach was to develop a platform using CRUD operations with Firebase Realtime Database efficiently.",
+        duration:
+          "I have been working on this project for approximately 1 month.",
+        role:
+          "As my personal project, I was responsible for everything: from planning and design to development and testing.",
         characteristics: {
-          title: "Project characteristics:",
+          title: "Project features:",
           item1:
-            "User authentication provided by Firebase Auth, allowing users to create accounts and log in.",
+            "User authentication provided by Firebase Auth, allowing account creation and sign–in.",
           item2:
-            "Users can create and manage their own profiles, including profile picture, username, and bio, ",
-          item3:
-            "Users can clearly create and manage their stories(books) and the chapters of these books, with a title, content, and cover image.",
+            "Users can create and manage the pets they have for adoption, including a profile photo, name, adoption stories, and comments."
         },
         future_enhancements: {
           title: "Planned future improvements:",
-          item1: "Improve performance, auth, security and user experience.",
+          item1:
+            "Improve performance, authentication, security, and user experience.",
           item2:
-            "Add more social tools for users to connect with other writers and readers.",
+            "Build a chat system to enable communication between users.",
           item3:
-            "Build a chat feature to enable users to communicate with other writers and readers.",
-          item4:
-            "Improve SEO and build a tag system to allow users to find their stories easily.",
-          item5:
-            "Add a search engine to make it easier for users to find their stories.",
-          item6:
-            "Implementing a responsive design to ensure that the website looks and functions well on different devices and screen sizes.",
-          item7:
-            "Adding a subscription system to allow users to support writers and readers and profit from their content.",
-        },
-      },
+            "Enhance SEO and implement a tagging system."
+        }
+      }
     },
     es: {
       projects: "Proyectos",
@@ -268,41 +261,31 @@ export default defineI18nConfig(() => ({
       az: {
         title: "Adopta Zulia",
         description:
-          "Proyecto personal: Plataforma social para escritores y lectores compartir sus historias. Utilicé Nuxt.js y Tailwind CSS para el front-end, trabajando con Node.js y Express + MySQL para la API REST del back-end.",
+          "Proyecto personal:Plataforma para agilizar la adopcion de mascotas. Utilicé Nuxt.js y Tailwind CSS para el front-end y Firebase y AWS para backend.",
         purpose:
-          "El propósito principal de desarrollar este proyecto fue proporcionar una plataforma para que escritores y lectores compartan sus historias y entender cómo funcionan este tipo de plataformas, ofreciendo una experiencia excepcional apoyada en nuestra propia experiencia y sugerencias de usuarios.",
+          "Como proposito principal tomamos una experiencia real pues a mi casa llego un gatito sin hogar y como ya tengo muchos, quize darlo en adopcion y ahi fue que pense en crear una plataforma para ayudar a los animalitos sin hogar, agilizando el proceso para que sea mas efectiva las adopciones en mi ciudad, que tanto necesita pues hay una creciente demanda de animalitos en busca de hogar.",
         objective:
           "El objetivo principal, además de ofrecer una gran experiencia a los usuarios, es aprender y practicar habilidades con diferentes frameworks y bibliotecas mediante este proyecto personal, para mejorar nuestro conocimiento.",
         approach:
-          "El enfoque principal fue desarrollar una API REST utilizando Node.js y Fastify como back-end.",
+          "El enfoque principal fue desarrollar una plataforma usando CRUD con Firebase Realtime Database de manera efectiva.",
         duration:
-          "He trabajado en este proyecto durante aproximadamente más de 7 meses.",
+          "He trabajado en este proyecto aproximadamente 1 mes.",
         role: "Al ser mi proyecto personal, fui responsable de todo: desde la planificación y diseño hasta el desarrollo y pruebas.",
         characteristics: {
           title: "Características del proyecto:",
           item1:
             "Autenticación de usuarios proporcionada por Firebase Auth, permitiendo crear cuentas e iniciar sesión.",
           item2:
-            "Los usuarios pueden crear y gestionar sus perfiles, incluyendo foto de perfil, nombre de usuario y biografía.",
-          item3:
-            "Los usuarios pueden crear y gestionar claramente sus historias (libros) y los capítulos de estos, con título, contenido e imagen de portada.",
+            "Los usuarios pueden crear y gestionar las mascotas que tienen en adopcion, incluyendo foto de perfil, nombre de usuario, historias de adopcion y comentarios.",
         },
         future_enhancements: {
           title: "Mejoras futuras planeadas:",
           item1:
             "Mejorar rendimiento, autenticación, seguridad y experiencia de usuario.",
           item2:
-            "Añadir más herramientas sociales para que los usuarios se conecten con otros escritores y lectores.",
-          item3:
             "Construir un sistema de chat para permitir la comunicación entre usuarios.",
-          item4:
-            "Mejorar el SEO e implementar un sistema de etiquetas para facilitar la búsqueda de historias.",
-          item5:
-            "Añadir un motor de búsqueda para facilitar la localización de historias.",
-          item6:
-            "Implementar un diseño responsivo que funcione bien en diferentes dispositivos y tamaños de pantalla.",
-          item7:
-            "Añadir un sistema de suscripciones para permitir a los usuarios apoyar a los escritores y obtener beneficios de su contenido.",
+          item3:
+            "Mejorar el SEO e implementar un sistema de etiquetas.",
         },
       },
     },

@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     head: {
       charset: "utf-16",
       viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+      link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }]
     },
   },
   modules: [
@@ -21,7 +22,6 @@ export default defineNuxtConfig({
   colorMode: {
     preference: "system",
     dataValue: "theme",
-    classSuffix: "",
   },
   tailwindcss: {
     configPath: "~/tailwind.config.js",
@@ -36,7 +36,7 @@ export default defineNuxtConfig({
     defaultLocale: "en",
     detectBrowserLanguage: {
       useCookie: true,
-      cookieKey: "i18n_redirected", // Clave oficial recomendada
+      cookieKey: "i18n_redirected",
       redirectOn: "root",
       alwaysRedirect: true,
     },

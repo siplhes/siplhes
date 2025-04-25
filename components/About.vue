@@ -1,8 +1,8 @@
 <template>
-  <section class=" bg-[#fefffa] text-[#121212] py-12">
+  <section class=" bg-[#fefffa] text-[#121212] py-4">
     <div class="text-center max-w-6xl mx-auto">
       <div>
-      <p>e-mail:</p>
+      <p>E-mail:</p>
         <button
           class="email w-fit"
           data-tip="Copy to clipboard"
@@ -14,7 +14,7 @@
 
     </div>
     <div
-      class="flex flex-inline mx-auto gap-2 py-6 max-w-4xl justify-center items-center"
+      class="flex flex-inline mx-auto gap-2 py-3 max-w-4xl justify-center items-center"
     >
 
       <NuxtLink
