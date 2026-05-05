@@ -2,10 +2,10 @@
   <main>
     <Hello />
     <div class="divider"/>
-    <About />
-    <TechStack/>
+    <About class="scroll-animate"/>
+    <TechStack class="scroll-animate"/>
     <div class="divider"/>
-    <Projects/>
+    <Projects class="scroll-animate"/>
   </main>
 </template>
 
@@ -23,4 +23,6 @@ useSeoMeta({
   ogImage: "https://example.com/image.png",
   twitterCard: "summary_large_image",
 });
+
+useScrollAnimation();
 </script>

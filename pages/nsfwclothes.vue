@@ -11,7 +11,7 @@
         {{ $t("nsfw.title") }}
       </h1>
       <NuxtLink
-        to="https://nsfwclothes.store"
+        to="https://nsfwclothes.vercel.app/"
         target="_blank"
         class="btn basis-1/3 "
         >{{$t("visit") }} <Icon name="icon-park-outline:link-one" class="fill-[#fefffa]"

@@ -1,14 +1,16 @@
 <template>
   <button
     @click="toggleLanguage"
-    class="text-lg p-2 rounded items-center justify-center inline-flex"
+    class="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface border border-border hover:border-accent transition-all duration-300"
+    :title="currentLocale === 'en' ? 'Switch to Spanish' : 'Switch to English'"
   >
     <NuxtImg
-      :src="currentLocale === 'en' ? '/images/uk.svg' : '/images/es.svg'"
-      class="w-[64px]"
+      :src="currentLocale === 'en' ? '/uk.svg' : '/es.svg'"
+      class="w-6 h-6"
+      :alt="currentLocale === 'en' ? 'English flag' : 'Spanish flag'"
     />
-    <span class="font-mono">
-      {{ currentLocale === 'en' ? 'English' : 'Español' }}
+    <span class="text-sm font-medium text-text-muted hover:text-text">
+      {{ currentLocale === 'en' ? 'EN' : 'ES' }}
     </span>
   </button>
 </template>

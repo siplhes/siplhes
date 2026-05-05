@@ -14,7 +14,7 @@
         {{ $t("az.title") }}
       </h1>
       <NuxtLink
-        to="https://adopta-zulia.vercel.app"
+        to="https://adoptazulia.org.ve"
         target="_blank"
         class="btn basis-1/3 "
         >{{$t("visit") }} <Icon name="icon-park-outline:link-one" class="fill-[#fefffa]" 

@@ -20,7 +20,7 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
   ],
   colorMode: {
-    preference: "system",
+    preference: "dark",
     dataValue: "theme",
   },
   tailwindcss: {

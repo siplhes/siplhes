@@ -1,22 +1,19 @@
 <template>
-  <section 
-
-  >
-
-    <div class="card max-w-5xl mx-auto rounded-box grid p-4 place-items-center">
-      <h1 class="text-2xl font-semibold mb-4 text-center">Tech Stack</h1>
-      <ul class="grid grid-cols-2 md:grid-cols-5 gap-2 justify-center">
-        <li v-for="(skill, index) in sortedSkills" :key="index" class="tech-icons">
-          ~ {{ skill }}
-        </li>
-      </ul>
+  <section class="section">
+    <div class="container">
+      <div class="card p-8 md:p-12">
+        <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center text-text">Tech Stack</h2>
+        <ul class="flex flex-wrap justify-center gap-3">
+          <li v-for="(skill, index) in sortedSkills" :key="index" class="tech-badge">
+            {{ skill }}
+          </li>
+        </ul>
+      </div>
     </div>
-
   </section>
 </template>
 
 <script setup>
-// Lazy-loaded skills data
 const skills = shallowRef([
   "Javascript",
   "Vue.js",
@@ -41,7 +38,4 @@ const sortedSkills = computed(() => [...skills.value].sort());
 </script>
 
 <style scoped>
-section{
-  @apply bg-[#121212] text-[#fefffa] py-12
-}
 </style>

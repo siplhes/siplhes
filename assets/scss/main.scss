@@ -2,142 +2,102 @@
 @tailwind components;
 @tailwind utilities;
 
-// Fuente principal
-$font-stack: Helvetica, sans-serif;
-
-// Colores ajustados para mejor contraste y armonía
-$primary-color: #30405d; // Azul grisáceo principal
-$primary-color-dark: #151c29; // Versión más oscura
-$secondary-color: #d2807f; // Rojo/rosa suavizado
-$secondary-color-dark: #b56968; // Versión más oscura del secundario
-$tertiary-color: #90aebb; // Azul claro para acentos
-$tertiary-color-dark: #708090; // Versión más oscura del terciario
-
-// Texto y fondo
-$text-black: #121212;
-$text-white: #ffffff;
-$text-title: #30405d; // Puedes usar este color en títulos
-$primary-background-color: #b56968; // Fondo principal, tono pastel
-
-* {
-  font-family: 'Heebo', sans-serif;
-  @apply w-full;
-}
-
-body {
-  font: 100% $font-stack;
-  color: $text-white;
-  @apply selection:bg-[#d2807f] selection:text-white;
-}
-
-main {
- @apply bg-[#121212];
-}
-
-.email {
-  color: $secondary-color;
-  text-decoration: none;
-  @apply text-lg font-bold;
-}
-
-.social-icons {
-  color: #121212;
-}
-
-.my-image{
-    @apply w-64 h-64 object-cover rounded-full;
-}
-.tech-icons {
-  background: $primary-color-dark;
-  color: $text-white;
-
-  &:hover {
-    background: $secondary-color;
-    color: $text-white;
+@layer base {
+  body {
+    @apply bg-background text-text transition-colors duration-300;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  @apply p-2 rounded transition-all duration-300 font-mono;
-}
+  html {
+    @apply scroll-smooth;
+  }
 
-.my-name {
-  color: $secondary-color;
-  @apply text-5xl font-bold;
-}
-
-.project-title {
-  color: $secondary-color;
-  @apply text-lg lg:text-xl font-bold text-center lg:text-left;
-}
-
-.btn {
-  background: $secondary-color;
-  color: $text-white;
-
-  @apply p-2 rounded transition-all duration-300 w-full text-center font-semibold;
-
-  &:hover {
-    background: $secondary-color-dark;
+  ::selection {
+    @apply bg-accent text-white;
   }
 }
 
-.nsfwlogo {
-  color: $text-white;
-  @apply text-3xl;
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
 
-  &:hover {
-    color: $secondary-color;
+  .section {
+    @apply py-20 md:py-32;
+  }
+
+  .card {
+    @apply bg-surface rounded-lg border border-border transition-all duration-300 hover:shadow-subtle;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95;
+  }
+
+  .btn-primary {
+    @apply bg-accent text-white hover:bg-accent-hover;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-white hover:bg-accent-hover;
+  }
+
+  .btn-outline {
+    @apply border-2 border-border text-text hover:border-accent hover:bg-accent/10;
+  }
+
+  .nav-link {
+    @apply relative px-4 py-2 text-sm font-medium text-text-muted hover:text-text transition-colors duration-200;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0.125rem;
+    background: rgb(217 119 6);
+    transform: scaleX(0);
+    transition: transform 0.2s;
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .social-link {
+    @apply p-3 rounded-lg bg-surface border border-border text-text-muted hover:text-text hover:border-accent transition-all duration-300;
+  }
+
+  .tech-badge {
+    @apply inline-flex items-center px-4 py-2 rounded-lg bg-surface border border-border text-text-muted font-mono text-sm font-medium transition-all duration-300 hover:border-accent hover:text-text;
+  }
+
+  .project-card {
+    @apply card overflow-hidden;
+  }
+
+  .project-card:hover {
+    @apply border-accent;
+  }
+
+  .divider {
+    @apply w-full h-px bg-border my-8;
   }
 }
 
-.container {
-  @apply mx-auto px-4 py-8;
-}
+@layer utilities {
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
 
-.prose {
-  @apply max-w-4xl;
-}
-
-.project-title {
-  @apply text-4xl font-bold pb-2 mt-8 mb-4;
-}
-
-.section-title {
-  @apply text-2xl font-bold border-b-2 border-[#fefffa] pb-2 mt-8 mb-4;
-}
-
-.section-text {
-  @apply text-lg leading-relaxed text-gray-400;
-}
-
-.list-disc {
-  @apply pl-5;
-}
-
-// Hello.vue
-.container-hello {
-  @apply text-center;
-}
-
-.grid-container {
-  @apply max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 p-4;
-}
-
-.image-wrapper {
-  @apply p-2 mx-auto rounded-xl;
-}
-
-.image {
-  @apply rounded-xl mx-auto object-cover;
-}
-
-.text-wrapper {
-  @apply p-2 my-auto;
-}
-
-.title {
-  @apply text-3xl;
-}
-
-.description {
-  @apply text-xl p-2;
+  .scroll-animate.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
