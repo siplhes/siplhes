@@ -261,7 +261,7 @@ export default defineI18nConfig(() => ({
       az: {
         title: "Adopta Zulia",
         description:
-          "Proyecto personal:Plataforma para agilizar la adopcion de mascotas. Utilicé Nuxt.js y Tailwind CSS para el front-end y Firebase y AWS para backend.",
+          "Proyecto personal: Plataforma para agilizar la adopcion de mascotas. Utilicé Nuxt.js y Tailwind CSS para el front-end y Firebase y AWS para backend.",
         purpose:
           "Como proposito principal tomamos una experiencia real pues a mi casa llego un gatito sin hogar y como ya tengo muchos, quize darlo en adopcion y ahi fue que pense en crear una plataforma para ayudar a los animalitos sin hogar, agilizando el proceso para que sea mas efectiva las adopciones en mi ciudad, que tanto necesita pues hay una creciente demanda de animalitos en busca de hogar.",
         objective:

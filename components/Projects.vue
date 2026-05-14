@@ -9,7 +9,7 @@ const projects = [
     title: t('az.title'),
     resume: t('az.description'),
     url: "https://adoptazulia.org.ve",
-    more: "/adoptazulia#project",
+    more: "/project/adoptazulia",
     techs: [
       "Nuxt.js",
       "Vue.js",
@@ -21,13 +21,13 @@ const projects = [
       "MySQL",
       "AWS",
     ],
-  }, 
+  },
   {
     img: "/images/nsfw.webp",
     title: t('nsfw.title'),
     resume: t('nsfw.description'),
     url: "https://nsfwclothes.vercel.app/",
-    more: "/nsfwclothes#project",
+    more: "/project/nsfwclothes",
     techs: [
       "Nuxt.js",
       "Vue.js",
@@ -43,7 +43,7 @@ const projects = [
     title: t('bac.title'),
     resume: t('bac.description'),
     url: "https://bookachoose.vercel.app",
-    more: "/bookachoose#project",
+    more: "/project/bookachoose",
     techs: [
       "Nuxt.js",
       "Vue.js",
