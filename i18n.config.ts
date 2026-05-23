@@ -146,6 +146,40 @@ export default defineI18nConfig(() => ({
           item3:
             "Enhance SEO and implement a tagging system."
         }
+      },
+      skprt: {
+        title: "SKPRT",
+        description:
+          "Multi-tenant SaaS e-commerce platform built with Nuxt.js, PostgreSQL, and Stripe. Designed to let multiple businesses run their online stores from a single, shared infrastructure with full tenant isolation.",
+        purpose:
+          "Provide a scalable, multi-tenant e-commerce solution that enables multiple businesses to launch and manage their online stores from a single platform, reducing overhead and simplifying maintenance.",
+        objective:
+          "Build a production-ready SaaS platform with complete tenant isolation, shared core infrastructure, customizable storefronts, and seamless payment processing.",
+        approach:
+          "Architected with database-level tenant isolation, tenant-aware middleware, and a shared API gateway. Each tenant receives a fully customizable storefront backed by the same battle-tested core modules — auth, catalog, cart, checkout, and payments.",
+        duration:
+          "In active development.",
+        role:
+          "Full-stack developer and architect — responsible for system design, multi-tenant architecture, front-end, API, and deployment.",
+        characteristics: {
+          title: "Key features:",
+          item1:
+            "Multi-tenant architecture with isolated data per tenant.",
+          item2:
+            "Customizable storefronts per tenant using a shared component library.",
+          item3:
+            "Integrated Stripe payments with subscription billing."
+        },
+        future_enhancements: {
+          title: "Planned improvements:",
+          item1: "Admin dashboard with per-tenant analytics and reporting.",
+          item2: "Multi-currency and multi-language support.",
+          item3: "Inventory management with real-time stock tracking.",
+          item4: "Automated onboarding flow for new tenants.",
+          item5: "Plugin marketplace for extending storefront capabilities.",
+          item6: "Headless API mode for custom front-end integrations.",
+          item7: "Performance optimizations and CDN-based asset delivery."
+        }
       }
     },
     es: {
@@ -287,6 +321,40 @@ export default defineI18nConfig(() => ({
           item3:
             "Mejorar el SEO e implementar un sistema de etiquetas.",
         },
+      },
+      skprt: {
+        title: "SKPRT",
+        description:
+          "Plataforma SaaS e-commerce multi-tenancy construida con Nuxt.js, PostgreSQL y Stripe. Permite a múltiples negocios gestionar sus tiendas online desde una infraestructura compartida con aislamiento completo de datos.",
+        purpose:
+          "Ofrecer una solución e-commerce multi-tenancy escalable que permita a múltiples negocios lanzar y gestionar sus tiendas desde una sola plataforma, reduciendo costos operativos y simplificando el mantenimiento.",
+        objective:
+          "Construir una plataforma SaaS lista para producción con aislamiento completo de inquilinos, infraestructura central compartida, tiendas personalizables y procesamiento de pagos integrado.",
+        approach:
+          "Arquitectura multi-tenancy con aislamiento a nivel de base de datos, middleware consciente del inquilino y un API gateway compartido. Cada inquilino recibe una tienda totalmente personalizable respaldada por los mismos módulos robustos — autenticación, catálogo, carrito, checkout y pagos.",
+        duration:
+          "En desarrollo activo.",
+        role:
+          "Desarrollador full-stack y arquitecto — responsable del diseño del sistema, arquitectura multi-tenancy, front-end, API y despliegue.",
+        characteristics: {
+          title: "Características principales:",
+          item1:
+            "Arquitectura multi-tenancy con datos aislados por inquilino.",
+          item2:
+            "Tiendas personalizables por inquilino usando una librería de componentes compartida.",
+          item3:
+            "Pagos integrados con Stripe y facturación por suscripción."
+        },
+        future_enhancements: {
+          title: "Mejoras planeadas:",
+          item1: "Panel de administración con analíticas por inquilino.",
+          item2: "Soporte multi-moneda y multi-idioma.",
+          item3: "Gestión de inventario con seguimiento en tiempo real.",
+          item4: "Flujo de incorporación automatizado para nuevos inquilinos.",
+          item5: "Mercado de plugins para extender capacidades de la tienda.",
+          item6: "Modo API headless para integraciones front-end personalizadas.",
+          item7: "Optimizaciones de rendimiento y entrega de assets vía CDN."
+        }
       },
     },
   },

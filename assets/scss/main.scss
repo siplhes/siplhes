@@ -2,12 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+// ──────────────────────────────────────────────
+// CRT Scanline texture — ultra subtle
+// ──────────────────────────────────────────────
+$scanline-color: rgba(0, 0, 0, 0.04);
+$scanline-size: 2px;
+
+// ──────────────────────────────────────────────
+// Base
+// ──────────────────────────────────────────────
 @layer base {
   body {
     @apply bg-background text-text transition-colors duration-300;
+    font-family: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, monospace;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.01em;
   }
 
   html {
@@ -15,10 +26,342 @@
   }
 
   ::selection {
-    @apply bg-accent text-white;
+    @apply bg-white/20 text-white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-surface;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border2 rounded-full hover:bg-white/20;
+  }
+
+  ::-webkit-scrollbar-corner {
+    @apply bg-surface;
   }
 }
 
+// ──────────────────────────────────────────────
+// CRT Monitor Overlay — barely there
+// ──────────────────────────────────────────────
+.crt-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    $scanline-color,
+    $scanline-color $scanline-size,
+    transparent $scanline-size,
+    transparent #{$scanline-size * 2}
+  );
+}
+
+// ──────────────────────────────────────────────
+// Terminal Containers — minimal
+// ──────────────────────────────────────────────
+.terminal-window {
+  @apply relative overflow-hidden rounded border;
+  border-color: rgba(255, 255, 255, 0.06);
+  background: rgba(10, 10, 10, 0.85);
+}
+
+.terminal-header {
+  @apply flex items-center gap-1.5 px-4 py-2.5 border-b;
+  border-color: rgba(255, 255, 255, 0.04);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.terminal-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.terminal-title {
+  @apply absolute left-1/2 -translate-x-1/2 text-sm;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.terminal-body {
+  @apply p-4 overflow-auto;
+}
+
+.bento-panel .terminal-body {
+  @apply p-3;
+}
+
+// ──────────────────────────────────────────────
+// Command Prompt Line
+// ──────────────────────────────────────────────
+.prompt-line {
+  @apply flex items-start gap-2;
+}
+
+.prompt-symbol {
+  @apply text-prompt font-bold shrink-0 select-none;
+  &::before {
+    content: '$ ';
+  }
+}
+
+.prompt-symbol.alt {
+  &::before {
+    content: '> ';
+  }
+}
+
+// ──────────────────────────────────────────────
+// Boot Screen
+// ──────────────────────────────────────────────
+.boot-screen {
+  @apply fixed inset-0 z-[100] flex flex-col items-center justify-center;
+  background: #0a0a0a;
+
+  .boot-content {
+    @apply max-w-xl w-full px-6;
+  }
+
+  .boot-message {
+    @apply font-mono text-sm leading-relaxed;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .boot-progress-bar {
+    @apply h-px mt-6 overflow-hidden;
+    background: rgba(255, 255, 255, 0.06);
+
+    .boot-progress-fill {
+      @apply h-full transition-all duration-300 ease-out;
+      background: #ffffff;
+    }
+  }
+
+  .boot-status {
+    @apply mt-4 text-xs;
+    color: rgba(255, 255, 255, 0.25);
+  }
+}
+
+// ──────────────────────────────────────────────
+// ASCII Art Display — pure monochrome
+// ──────────────────────────────────────────────
+.ascii-banner {
+  @apply font-mono whitespace-pre leading-tight;
+  font-size: clamp(0.3rem, 1.2vw, 0.7rem);
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.1;
+
+  @screen sm {
+    font-size: clamp(0.4rem, 1.5vw, 0.75rem);
+  }
+
+  @screen md {
+    font-size: clamp(0.5rem, 1.8vw, 0.8rem);
+  }
+}
+
+// ──────────────────────────────────────────────
+// Typewriter Cursor
+// ──────────────────────────────────────────────
+.typewriter-cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.1em;
+  background: rgba(255, 255, 255, 0.75);
+  vertical-align: text-bottom;
+  margin-left: 2px;
+  animation: cursorBlink 0.7s step-end infinite;
+}
+
+// ──────────────────────────────────────────────
+// Text Colors — monochrome
+// ──────────────────────────────────────────────
+.text-white-dim {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.text-white-muted {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.text-dim {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+// ──────────────────────────────────────────────
+// neofetch-style output
+// ──────────────────────────────────────────────
+.neofetch-grid {
+  @apply grid grid-cols-1 md:grid-cols-[160px_1fr] gap-6 items-start;
+}
+
+.neofetch-ascii {
+  @apply font-mono whitespace-pre leading-tight;
+  font-size: 0.65rem;
+  line-height: 1.15;
+  color: rgba(255, 255, 255, 0.5);
+
+  @screen sm {
+    font-size: 0.75rem;
+  }
+
+  @screen lg {
+    font-size: 0.85rem;
+  }
+}
+
+.neofetch-line {
+  @apply py-0.5 text-base;
+  .key {
+    @apply text-white font-semibold;
+  }
+  .sep {
+    @apply mx-2;
+    color: rgba(255, 255, 255, 0.2);
+  }
+  .value {
+    @apply text-text;
+  }
+}
+
+// ──────────────────────────────────────────────
+// Directory / Listing styles
+// ──────────────────────────────────────────────
+.ls-listing {
+  @apply font-mono text-base space-y-1;
+}
+
+.ls-item {
+  @apply flex items-center gap-3 px-3 py-1.5 rounded transition-all duration-200;
+  &:hover {
+    @apply bg-surface2;
+  }
+}
+
+.ls-permissions {
+  @apply text-sm w-28 shrink-0;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.ls-size {
+  @apply text-xs w-16 shrink-0 text-right;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.ls-date {
+  @apply text-xs w-24 shrink-0;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.ls-name {
+  @apply text-text font-medium;
+  &.dir {
+    @apply text-text-muted;
+  }
+  &.link {
+    @apply text-text-muted underline;
+  }
+  &.exec {
+    color: rgba(255, 255, 255, 0.75);
+  }
+}
+
+// ──────────────────────────────────────────────
+// Tech tags — minimal monochrome
+// ──────────────────────────────────────────────
+.tech-tag {
+  @apply inline-flex items-center px-3 py-1 font-mono text-xs rounded;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.55);
+
+  &::before {
+    content: '◆ ';
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+// ──────────────────────────────────────────────
+// Man Page Style
+// ──────────────────────────────────────────────
+.man-page {
+  @apply font-mono text-base leading-relaxed max-w-4xl mx-auto;
+
+  .man-header {
+    @apply text-center mb-8 pb-4 border-b;
+    border-color: rgba(255, 255, 255, 0.06);
+  }
+
+  .man-section {
+    @apply mb-8;
+  }
+
+  .man-section-title {
+    @apply font-bold text-white text-lg mb-3 uppercase tracking-wider;
+  }
+
+  .man-section-text {
+    @apply text-text/70 leading-relaxed mb-4 text-base;
+  }
+
+  .man-flag {
+    @apply inline-block px-2 py-0.5 text-sm rounded;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+  }
+}
+
+// ──────────────────────────────────────────────
+// Navigation — Terminal command bar
+// ──────────────────────────────────────────────
+.nav-terminal {
+  @apply border-b;
+  border-color: rgba(255, 255, 255, 0.04);
+
+  .nav-command-input {
+    @apply w-full bg-transparent text-sm outline-none;
+    color: rgba(224, 224, 224, 0.8);
+    caret-color: #ffffff;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.15);
+    }
+  }
+}
+
+// ──────────────────────────────────────────────
+// Dividend line — terminal-style
+// ──────────────────────────────────────────────
+.divider-terminal {
+  @apply w-full my-8;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 20%,
+    rgba(255, 255, 255, 0.08) 80%,
+    transparent 100%
+  );
+}
+
+// ──────────────────────────────────────────────
+// Utility classes
+// ──────────────────────────────────────────────
 @layer components {
   .container {
     @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8;
@@ -28,68 +371,42 @@
     @apply py-20 md:py-32;
   }
 
-  .card {
-    @apply bg-surface rounded-lg border border-border transition-all duration-300 hover:shadow-subtle;
-  }
-
   .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95;
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-300;
   }
 
   .btn-primary {
-    @apply bg-accent text-white hover:bg-accent-hover;
-  }
-
-  .btn-accent {
-    @apply bg-accent text-white hover:bg-accent-hover;
+    @apply bg-white text-background hover:bg-gray-300 font-bold;
   }
 
   .btn-outline {
-    @apply border-2 border-border text-text hover:border-accent hover:bg-accent/10;
+    @apply border border-white/20 text-white/70 hover:bg-white/5;
+  }
+
+  .btn-ghost {
+    @apply text-text-muted hover:text-white hover:bg-white/5;
   }
 
   .nav-link {
-    @apply relative px-4 py-2 text-sm font-medium text-text-muted hover:text-text transition-colors duration-200;
-  }
-
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 0.125rem;
-    background: rgb(217 119 6);
-    transform: scaleX(0);
-    transition: transform 0.2s;
-  }
-
-  .nav-link:hover::after {
-    transform: scaleX(1);
+    @apply relative px-3 py-1.5 text-sm font-medium text-text-muted hover:text-white transition-colors duration-200;
+    &::before {
+      content: '[ ';
+      color: rgba(255, 255, 255, 0.15);
+    }
+    &::after {
+      content: ' ]';
+      color: rgba(255, 255, 255, 0.15);
+    }
   }
 
   .social-link {
-    @apply p-3 rounded-lg bg-surface border border-border text-text-muted hover:text-text hover:border-accent transition-all duration-300;
-  }
-
-  .tech-badge {
-    @apply inline-flex items-center px-4 py-2 rounded-lg bg-surface border border-border text-text-muted font-mono text-sm font-medium transition-all duration-300 hover:border-accent hover:text-text;
-  }
-
-  .project-card {
-    @apply card overflow-hidden;
-  }
-
-  .project-card:hover {
-    @apply border-accent;
+    @apply p-2 rounded border border-white/10 text-text-muted hover:text-white hover:border-white/30 transition-all duration-300;
   }
 
   .divider {
-    @apply w-full h-px bg-border my-8;
+    @apply divider-terminal;
   }
-}
 
-@layer utilities {
   .scroll-animate {
     opacity: 0;
     transform: translateY(30px);
@@ -100,4 +417,39 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+// ──────────────────────────────────────────────
+// Page transitions
+// ──────────────────────────────────────────────
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.3s ease;
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.page-leave-to {
+  opacity: 0;
+}
+
+// ──────────────────────────────────────────────
+// Keyframes
+// ──────────────────────────────────────────────
+@keyframes crtFlicker {
+  0% { opacity: 1; }
+  44% { opacity: 1; }
+  45% { opacity: 0.985; }
+  46% { opacity: 1; }
+  47% { opacity: 0.99; }
+  48% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }

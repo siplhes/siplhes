@@ -11,6 +11,7 @@ export interface Project {
   images: string[]
   seoTitle: string
   hasCharacteristics?: boolean
+  techs?: string[]
 }
 
 export const projects: Project[] = [
@@ -60,6 +61,29 @@ export const projects: Project[] = [
     },
     images: ['/images/nsfw1.webp'],
     seoTitle: 'NSFW Clothes Project by Joseph Hurtado'
+  },
+  ///SKPRT
+  {
+    slug: 'skprt',
+    i18nKey: 'skprt',
+    url: '#',
+    logo: {
+      type: 'image',
+      src: '',
+      className: ''
+    },
+    images: [],
+    seoTitle: 'SKPRT — Multi-tenant SaaS E-commerce by Joseph Hurtado',
+    techs: [
+      'Nuxt.js',
+      'Vue.js',
+      'TypeScript',
+      'TailwindCSS',
+      'PostgreSQL',
+      'Stripe',
+      'Docker',
+      'AWS'
+    ]
   }
 ]
 

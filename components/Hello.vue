@@ -1,31 +1,81 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <div class="flex flex-col items-center text-center md:grid md:grid-cols-2 md:gap-16 md:items-center md:text-left">
-        <div class="mb-8 md:mb-0 order-2 md:order-1 animate-fade-in-up">
-          <h2 class="text-2xl md:text-3xl font-semibold mb-4 text-accent">
-            {{ $t("hello") }}
-          </h2>
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-text">
-            Joseph Hurtado
-          </h1>
-          <h3 class="text-lg md:text-xl text-text-muted leading-relaxed max-w-lg">
-            {{ $t("description") }}
-          </h3>
+  <div class="h-full">
+    <div class="terminal-window h-full">
+      <div class="terminal-header">
+        <span class="terminal-dot close"></span>
+        <span class="terminal-dot minimize"></span>
+        <span class="terminal-dot maximize"></span>
+        <span class="terminal-title">~/hello.sh</span>
+      </div>
+      <div class="terminal-body flex flex-col md:flex-row items-center gap-4 md:gap-6">
+        <!-- Profile image -->
+        <div class="shrink-0">
+          <div class="relative group">
+            <div class="absolute -inset-1 bg-white/5 rounded-full blur-md group-hover:bg-white/10 transition-all duration-500"></div>
+            <div class="relative">
+              <NuxtImg
+                class="relative w-28 h-28 md:w-36 md:h-36 rounded-full object-cover border border-white/10"
+                src="https://i.imgur.com/ZhPz5xP.png"
+                alt="Joseph Hurtado"
+              />
+              <div class="absolute -top-2 -left-2 text-white-muted font-mono text-xs">┌</div>
+              <div class="absolute -top-2 -right-2 text-white-muted font-mono text-xs">┐</div>
+              <div class="absolute -bottom-2 -left-2 text-white-muted font-mono text-xs">└</div>
+              <div class="absolute -bottom-2 -right-2 text-white-muted font-mono text-xs">┘</div>
+            </div>
+          </div>
         </div>
-        <div class="order-1 md:order-2 animate-scale-in">
-          <div class="relative inline-block">
-            <NuxtImg
-              class="relative w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full object-cover border-4 border-border transform hover:scale-105 transition-transform duration-500"
-              src="https://i.imgur.com/ZhPz5xP.png"
-              alt="Joseph Hurtado"
-            />
+
+        <!-- Terminal content -->
+        <div class="flex-1 min-w-0">
+          <div class="prompt-line mb-2">
+            <span class="prompt-symbol"></span>
+            <span class="text-text-muted text-sm">./hello.sh</span>
+          </div>
+
+          <pre class="ascii-banner mb-2">{{ ASCII_BANNER }}</pre>
+          <div class="text-text text-sm font-mono leading-relaxed">
+            <div class="prompt-line">
+              <span class="prompt-symbol"></span>
+              <span class="text-text-muted text-sm">cat ./whoami.txt</span>
+            </div>
+            <div class="ml-5 mt-0.5 text-text/90 text-sm">
+              > <span class="text-white font-bold">Joseph Hurtado</span>
+            </div>
+            <div class="ml-5 mt-0.5 text-text-muted text-sm">
+              {{ $t("description") }}
+            </div>
+          </div>
+
+          <div class="mt-2 pt-2 border-t border-white/5">
+            <div class="prompt-line">
+              <span class="prompt-symbol"></span>
+              <span class="text-text-muted text-sm">systemctl status portfolio</span>
+            </div>
+            <div class="ml-5 text-xs text-white-muted">● portfolio.service — Personal Portfolio System</div>
+            <div class="ml-5 text-xs text-white-muted">
+              <span class="text-white-dim">Loaded:</span> loaded
+              <span class="text-text-muted2 ml-1">●</span>
+              <span class="text-white-dim">Active:</span> active (running)
+              <span class="text-text-muted2 ml-1">●</span>
+              <span class="text-white-dim">Uptime:</span> 7+ years
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
+<script setup lang="ts">
+import { ASCII_BANNER, useCursorBlink } from "~/composables/useTerminal";
+
+const cursor = useCursorBlink(true);
+</script>
+
 <style scoped>
+.ascii-banner {
+  font-size: clamp(0.45rem, 1.5vw, 0.8rem);
+  line-height: 1.1;
+}
 </style>
