@@ -1,124 +1,84 @@
 <template>
-  <div class="h-full">
-    <div class="terminal-window h-full">
-      <div class="terminal-header">
-        <span class="terminal-dot close"></span>
-        <span class="terminal-dot minimize"></span>
-        <span class="terminal-dot maximize"></span>
-        <span class="terminal-title">~/contact.sh</span>
-      </div>
-      <div class="terminal-body">
-        <div class="prompt-line mb-3">
-          <span class="prompt-symbol"></span>
-          <span class="text-text-muted text-sm">./contact.sh --system-info</span>
-        </div>
+  <div class="h-full flex flex-col group/card">
+    <!-- Section label -->
+    <div class="section-label mb-3 stagger-item" :style="{ '--item-index': 0 }">Connect</div>
 
-        <!-- neofetch style grid -->
-        <div class="grid grid-cols-[auto_1fr] gap-3 items-start mb-3">
-          <!-- ASCII art person -->
-          <pre v-pre class="neofetch-ascii select-none">
-            {{{{{{{{{{{{
-           {{{{{{{{{{{{{{{
-          {{{{{{{{  {{{{{{{{
-          {{{{{{      {{{{{{{
-          {{{{{(       ){{{{{
-          {{{{{{        {{{{{{
-          {{{{{{       (({{{{{
-          {{{{{{       {{{{{{
-           {{{{{      {{{{{{
-            {{{{{    {{{{{{
-              {{{{{{{{{{{
-               {{{{{{{{
-                 {{{{
-                  {{
-                    </pre>
-          <!-- Info panel -->
-          <div class="space-y-0.5">
-            <div class="neofetch-line">
-              <span class="key">Joseph Hurtado</span>
-            </div>
-            <div class="neofetch-line">
-              <span class="text-text-muted2">────────────────</span>
-            </div>
-            <div class="neofetch-line">
-              <span class="key">OS</span><span class="sep">:</span><span class="value">Portfolio v1.0.0</span>
-            </div>
-            <div class="neofetch-line">
-              <span class="key">Kernel</span><span class="sep">:</span><span class="value">JS/TS Full Stack</span>
-            </div>
-            <div class="neofetch-line">
-              <span class="key">Uptime</span><span class="sep">:</span><span class="value">7+ years experience</span>
-            </div>
-            <div class="neofetch-line">
-              <span class="key">Shell</span><span class="sep">:</span><span class="value">Vue.js / Nuxt.js</span>
-            </div>
-            <div class="neofetch-line">
-              <span class="key">Email</span><span class="sep">:</span>
-              <button
-                @click="copyToClipboard"
-                class="value hover:text-white transition-colors cursor-pointer underline decoration-dotted underline-offset-2"
-                title="Click to copy"
-              >
-                siplhes@gmail.com
-              </button>
-              <span class="text-white-muted text-xs ml-1">[copy]</span>
-            </div>
-            <div class="neofetch-line">
-              <span class="key">Location</span><span class="sep">:</span><span class="value">Venezuela</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Social links as directory listing -->
-        <div class="prompt-line mb-2">
-          <span class="prompt-symbol"></span>
-          <span class="text-text-muted text-sm">ls -la ./social/</span>
-        </div>
-        <div class="ls-listing mb-1">
-          <div class="ls-item">
-            <span class="ls-permissions">drwxr-xr-x</span>
-            <NuxtLink to="https://github.com/siplhes" target="_blank" class="ls-name link flex items-center gap-1">
-              <Icon name="uil:github" class="w-3 h-3" /> github
-            </NuxtLink>
-          </div>
-          <div class="ls-item">
-            <span class="ls-permissions">drwxr-xr-x</span>
-            <NuxtLink to="https://www.linkedin.com/in/siplhes/" target="_blank" class="ls-name link flex items-center gap-1">
-              <Icon name="uil:linkedin" class="w-3 h-3" /> linkedin
-            </NuxtLink>
-          </div>
-          <div class="ls-item">
-            <span class="ls-permissions">drwxr-xr-x</span>
-            <NuxtLink to="https://wa.me/584127698781" target="_blank" class="ls-name link flex items-center gap-1">
-              <Icon name="uil:whatsapp-alt" class="w-3 h-3" /> whatsapp
-            </NuxtLink>
-          </div>
-          <div class="ls-item">
-            <span class="ls-permissions">drwxr-xr-x</span>
-            <NuxtLink to="https://behance.com/siplhes" target="_blank" class="ls-name link flex items-center gap-1">
-              <Icon name="uil:behance" class="w-3 h-3" /> behance
-            </NuxtLink>
-          </div>
-        </div>
-        <div class="text-text-muted2 text-xs ml-1">
-          total 4 links — all accessible via internet
-        </div>
+    <!-- Contact Info with hover effects -->
+    <div class="space-y-2.5 mb-4">
+      <div class="flex items-center gap-3 text-sm px-2 -mx-2 py-1.5 rounded-xl transition-all duration-300 hover:bg-white/[0.03] hover:pl-3 group/item">
+        <Icon name="lucide:mail" class="w-4 h-4 text-text-muted2 shrink-0 transition-all duration-300 group-hover/item:text-blue group-hover/item:scale-110" />
+        <button
+          @click="copyToClipboard"
+          class="text-text/70 hover:text-text transition-colors cursor-pointer truncate"
+          title="Click to copy"
+        >
+         <NuxtLink :to="'mailto:' + email" class="text-text/70">E-mail </NuxtLink>
+        </button>
+        <Icon name="lucide:copy" class="w-3 h-3 text-text-muted2/0 ml-auto transition-all duration-300 group-hover/item:text-text-muted2/70 group-hover/item:opacity-100 shrink-0" />
       </div>
+      
+      <div class="flex items-center gap-3 text-sm px-2 -mx-2 py-1.5 rounded-xl transition-all duration-300 hover:bg-white/[0.03] hover:pl-3 group/item">
+        <Icon name="lucide:map-pin" class="w-4 h-4 text-text-muted2 shrink-0 transition-all duration-300 group-hover/item:text-orange group-hover/item:scale-110" />
+        <span class="text-text/70">Venezuela</span>
+      </div>
+      <div class="flex items-center gap-3 text-sm px-2 -mx-2 py-1.5 rounded-xl transition-all duration-300 hover:bg-white/[0.03] hover:pl-3 group/item">
+        <Icon name="lucide:briefcase" class="w-4 h-4 text-text-muted2 shrink-0 transition-all duration-300 group-hover/item:text-green group-hover/item:scale-110" />
+        <span class="text-text/70">Full Stack Developer</span>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="h-px bg-border my-3"></div>
+
+    <!-- Social Links -->
+    <div class="section-label mb-3 stagger-item" :style="{ '--item-index': 1 }">Social</div>
+    <div class="space-y-1.5 stagger-item" :style="{ '--item-index': 2 }">
+      <NuxtLink
+        v-for="link in socialLinks"
+        :key="link.label"
+        :to="link.url"
+        target="_blank"
+        class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-text-muted hover:text-text hover:bg-white/[0.03] transition-all duration-200 group/link"
+      >
+        <Icon :name="link.icon" class="w-4 h-4 shrink-0 transition-all duration-300 group-hover/link:scale-110 group-hover/link:text-white" />
+        <span class="transition-all duration-300 group-hover/link:translate-x-0.5">{{ link.label }}</span>
+        <Icon name="lucide:external-link" class="w-3 h-3 ml-auto text-text-muted2 shrink-0 transition-all duration-300 group-hover/link:translate-x-0.5 group-hover/link:text-text-muted" />
+      </NuxtLink>
+    </div>
+
+    <!-- Spacer -->
+    <div class="flex-1"></div>
+
+    <!-- Repository link -->
+    <div class="mt-4 pt-3 border-t border-border stagger-item" :style="{ '--item-index': 3 }">
+      <NuxtLink
+        to="https://github.com/siplhes/siplhes"
+        target="_blank"
+        class="flex items-center gap-2 text-xs text-text-muted2 hover:text-text-muted transition-colors font-mono group/repo"
+      >
+        <Icon name="lucide:code-2" class="w-3 h-3 transition-all duration-300 group-hover/repo:rotate-12" />
+        <span>View source</span>
+        <Icon name="lucide:external-link" class="w-3 h-3 ml-auto transition-all duration-300 group-hover/repo:translate-x-0.5" />
+      </NuxtLink>
     </div>
   </div>
 </template>
 
 <script setup>
-  const { $toast } = useNuxtApp();
+const { $toast } = useNuxtApp();
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText("siplhes@gmail.com");
-    $toast.success("Email copied to clipboard");
-  };
+const socialLinks = [
+  { label: "GitHub", url: "https://github.com/siplhes", icon: "lucide:github" },
+  { label: "LinkedIn", url: "https://www.linkedin.com/in/siplhes/", icon: "lucide:linkedin" },
+  { label: "WhatsApp", url: "https://wa.me/584127698781", icon: "lucide:message-circle" },
+  { label: "Behance", url: "https://behance.com/siplhes", icon: "lucide:palette" },
+];
+
+const _email = "c2lwbGhlc0BnbWFpbC5jb20=";
+const email = computed(() => atob(_email));
+
+const copyToClipboard = () => {
+  navigator.clipboard.writeText(email.value);
+  $toast.success("Email copied to clipboard");
+};
 </script>
-
-<style scoped>
-.neofetch-ascii {
-  color: rgba(255, 255, 255, 0.5);
-}
-</style>

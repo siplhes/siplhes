@@ -25,7 +25,7 @@ export const projects: Project[] = [
       src: '/images/az.webp',
       className: 'project-image'
     },
-    images: ['/images/az1.webp','/images/az2.webp','/images/az3.webp','/images/az4.webp','/images/az5.webp'],
+    images: ['/images/az1.webp', '/images/az2.webp', '/images/az3.webp', '/images/az4.webp', '/images/az5.webp'],
     seoTitle: 'az Clothes Project by Joseph Hurtado',
     hasCharacteristics: true
   },
@@ -64,7 +64,7 @@ export const projects: Project[] = [
   },
   ///SKPRT
   {
-    slug: 'skprt',
+    slug: 'skp',
     i18nKey: 'skprt',
     url: '#',
     logo: {

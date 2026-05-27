@@ -1,218 +1,163 @@
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
-
 const { t } = useI18n();
 
 const projects = [
   {
+    slug: 'adoptazulia',
     img: "/images/az.webp",
     title: t("az.title"),
-    resume: t("az.description"),
+    description: t("az.description"),
     url: "https://adoptazulia.org.ve",
     more: "/project/adoptazulia",
-    techs: [
-      "Nuxt.js",
-      "Vue.js",
-      "CSS",
-      "TailwindCSS",
-      "DaisyUI",
-      "Node.js",
-      "Express.js",
-      "MySQL",
-      "AWS",
-    ],
+    techs: ["Nuxt.js", "Vue.js", "TailwindCSS", "Firebase", "AWS"],
+    accent: "blue",
   },
   {
+    slug: 'nsfwclothes',
     img: "/images/nsfw.webp",
     title: t("nsfw.title"),
-    resume: t("nsfw.description"),
+    description: t("nsfw.description"),
     url: "https://nsfwclothes.vercel.app/",
     more: "/project/nsfwclothes",
-    techs: [
-      "Nuxt.js",
-      "Vue.js",
-      "CSS",
-      "TailwindCSS",
-      "Node.js",
-      "Fastify",
-      "Json",
-    ],
+    techs: ["Nuxt.js", "Vue.js", "TailwindCSS", "Fastify", "MySQL"],
+    accent: "purple",
   },
   {
+    slug: 'bookachoose',
     img: "/images/book.webp",
     title: t("bac.title"),
-    resume: t("bac.description"),
+    description: t("bac.description"),
     url: "https://bookachoose.vercel.app",
     more: "/project/bookachoose",
-    techs: [
-      "Nuxt.js",
-      "Vue.js",
-      "CSS",
-      "TailwindCSS",
-      "Firebase RTDB",
-      "AWS",
-    ],
+    techs: ["Nuxt.js", "Vue.js", "TailwindCSS", "Firebase", "Express"],
+    accent: "orange",
   },
   {
+    slug: 'skprt',
     img: "",
     title: t("skprt.title"),
-    resume: t("skprt.description"),
+    description: t("skprt.description"),
     url: "#",
     more: "/project/skprt",
-    techs: [
-      "Nuxt.js",
-      "Vue.js",
-      "TypeScript",
-      "TailwindCSS",
-      "PostgreSQL",
-      "Stripe",
-      "Docker",
-      "AWS",
-    ],
+    techs: ["Nuxt.js", "TypeScript", "PostgreSQL", "Stripe", "Docker"],
+    accent: "green",
   },
 ];
-
-const dates = [
-  "Mon Jan 15",
-  "Wed Mar 22",
-  "Fri Sep 08",
-  "Mon May 20",
-];
-
-const sizes = ["4.2 KB", "2.1 KB", "3.7 KB", "---"];
-
-const expandedIndex = ref<number | null>(null);
-
-function toggleExpand(index: number) {
-  expandedIndex.value = expandedIndex.value === index ? null : index;
-}
 </script>
 
 <template>
-  <div class="h-full">
-    <div class="terminal-window h-full">
-      <div class="terminal-header">
-        <span class="terminal-dot close"></span>
-        <span class="terminal-dot minimize"></span>
-        <span class="terminal-dot maximize"></span>
-        <span class="terminal-title">~/projects.sh</span>
-      </div>
-      <div class="terminal-body">
-        <div class="prompt-line mb-2">
-          <span class="prompt-symbol"></span>
-          <span class="text-text-muted text-sm">ls -la ./projects/</span>
-        </div>
+  <div class="group/card">
+    <div class="flex items-center justify-between mb-5 stagger-item" :style="{ '--item-index': 0 }">
+      <div class="section-label mb-0">Projects</div>
+      <span class="text-xs text-text-muted2 font-mono">{{ projects.length }} total</span>
+    </div>
 
-        <div class="font-mono text-sm space-y-1 mb-3">
-          <!-- Header -->
-          <div class="flex items-center gap-2 px-2 py-1 text-text-muted2 text-xs">
-            <span class="w-24 shrink-0">Permissions</span>
-            <span class="w-18 shrink-0">Size</span>
-            <span class="w-20 shrink-0">Date</span>
-            <span>Name</span>
-          </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 stagger-item" :style="{ '--item-index': 1 }">
+      <NuxtLink
+        v-for="(project, index) in projects"
+        :key="index"
+        :to="project.more"
+        class="group/project relative overflow-hidden rounded-2xl border border-border bg-surface p-5 transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-card-hover"
+        :class="{
+          'hover:border-blue/20': project.accent === 'blue',
+          'hover:border-purple/20': project.accent === 'purple',
+          'hover:border-orange/20': project.accent === 'orange',
+          'hover:border-green/20': project.accent === 'green',
+        }"
+      >
+        <!-- Accent line - animates from center on hover -->
+        <div
+          class="absolute top-0 left-1/2 -translate-x-1/2 w-0 h-[2px] rounded-full transition-all duration-500 ease-out group-hover/project:w-full group-hover/project:opacity-100"
+          :class="{
+            'bg-blue/60': project.accent === 'blue',
+            'bg-purple/60': project.accent === 'purple',
+            'bg-orange/60': project.accent === 'orange',
+            'bg-green/60': project.accent === 'green',
+          }"
+        ></div>
 
+        <!-- Subtle glow effect on hover -->
+        <div
+          class="absolute -inset-0 opacity-0 transition-opacity duration-500 group-hover/project:opacity-100 pointer-events-none"
+          :class="{
+            'bg-gradient-to-b from-blue/[0.02] to-transparent': project.accent === 'blue',
+            'bg-gradient-to-b from-purple/[0.02] to-transparent': project.accent === 'purple',
+            'bg-gradient-to-b from-orange/[0.02] to-transparent': project.accent === 'orange',
+            'bg-gradient-to-b from-green/[0.02] to-transparent': project.accent === 'green',
+          }"
+        ></div>
+
+        <div class="flex flex-col h-full relative z-[1]">
+          <!-- Project image or placeholder -->
           <div
-            v-for="(project, index) in projects"
-            :key="index"
+            v-if="project.img"
+            class="w-full h-32 rounded-lg overflow-hidden mb-3 bg-surface2"
           >
-            <!-- Main listing line (clickable) -->
-            <div
-              class="flex items-center gap-2 px-2 py-1 rounded cursor-pointer transition-colors hover:bg-white/5 group"
-              @click="toggleExpand(index)"
+            <NuxtImg
+              :src="project.img"
+              :alt="project.title"
+              class="w-full h-full object-cover transition-all duration-700 ease-out group-hover/project:scale-110 group-hover/project:brightness-110"
+            />
+          </div>
+          <div
+            v-else
+            class="w-full h-32 rounded-lg mb-3 bg-surface2 flex items-center justify-center transition-all duration-500 group-hover/project:bg-white/[0.04]"
+          >
+            <span class="text-3xl font-bold text-text-muted2/30 font-mono transition-all duration-500 group-hover/project:text-white/40 group-hover/project:scale-110">
+              {{ project.title.charAt(0) }}
+            </span>
+          </div>
+
+          <!-- Content with subtle lift on hover -->
+          <div class="transition-all duration-500 group-hover/project:translate-y-[-1px]">
+            <h3 class="text-sm font-semibold text-white transition-colors duration-300">
+              {{ project.title }}
+              <span class="inline-block opacity-0 -translate-x-1 transition-all duration-300 group-hover/project:opacity-100 group-hover/project:translate-x-0">→</span>
+            </h3>
+            <p class="text-xs text-text-muted mt-1 leading-relaxed line-clamp-2">
+              {{ project.description }}
+            </p>
+          </div>
+
+          <!-- Tech tags -->
+          <div class="flex flex-wrap gap-1 mt-3">
+            <span
+              v-for="(tech, ti) in project.techs.slice(0, 3)"
+              :key="ti"
+              class="inline-flex items-center px-2 py-0.5 text-[10px] font-mono rounded-md bg-white/[0.03] border border-white/[0.06] text-text-muted2 transition-all duration-200 hover:scale-105 hover:-translate-y-0.5"
+              :style="{ transitionDelay: `${ti * 40}ms` }"
             >
-              <span class="text-text-muted2 text-xs w-24 shrink-0">drwxr-xr-x</span>
-              <span class="text-text-muted2 text-xs w-18 shrink-0 text-right">{{ sizes[index] }}</span>
-              <span class="text-text-muted2 text-xs w-20 shrink-0">{{ dates[index] }}</span>
-              <span class="text-text-muted group-hover:text-white transition-colors text-sm">
-                ./{{ project.title.toLowerCase().replace(/\s+/g, "-") }}/
-              </span>
-              <span class="text-text-muted2 text-xs ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
-                [expand]
-              </span>
-            </div>
+              {{ tech }}
+            </span>
+            <span
+              v-if="project.techs.length > 3"
+              class="inline-flex items-center px-2 py-0.5 text-[10px] font-mono rounded-md text-text-muted2"
+            >
+              +{{ project.techs.length - 3 }}
+            </span>
+          </div>
 
-            <!-- Expanded details -->
-            <Transition name="details-slide">
-              <div
-                v-if="expandedIndex === index"
-                class="ml-6 pl-3 border-l border-white/10 space-y-1.5 py-1.5 mb-1"
-              >
-                <!-- Description -->
-                <div class="flex items-start gap-2 text-xs">
-                  <span class="text-white-muted shrink-0">│</span>
-                  <div>
-                    <span class="text-text-muted2 text-xs">Description:</span>
-                    <span class="text-text-muted ml-1">{{ project.resume }}</span>
-                  </div>
-                </div>
-
-                <!-- Tech tags -->
-                <div class="flex items-start gap-2 text-xs">
-                  <span class="text-white-muted shrink-0">│</span>
-                  <div class="flex flex-wrap gap-1.5">
-                    <span class="text-text-muted2 text-xs">Tech:</span>
-                    <span
-                      v-for="(tech, ti) in project.techs"
-                      :key="ti"
-                      class="inline-flex items-center px-2 py-0.5 font-mono text-xs rounded bg-white/[0.03] border border-white/[0.08] text-white/50"
-                    >
-                      {{ tech }}
-                    </span>
-                  </div>
-                </div>
-
-                <!-- Actions -->
-                <div class="flex items-start gap-2 text-xs pt-1">
-                  <span class="text-white-muted shrink-0">│</span>
-                  <div class="flex gap-2">
-                    <NuxtLink
-                      :to="project.url"
-                      target="_blank"
-                      class="px-3 py-1 rounded text-xs font-semibold bg-white/10 text-white hover:bg-white/20 transition-colors border border-white/20"
-                    >
-                      Visit
-                    </NuxtLink>
-                    <NuxtLink
-                      :to="project.more"
-                      class="px-3 py-1 rounded text-xs font-semibold text-text-muted hover:text-white transition-colors border border-border hover:border-white/30"
-                    >
-                      Details
-                    </NuxtLink>
-                  </div>
-                </div>
-              </div>
-            </Transition>
+          <!-- Arrow hint with enhanced animation -->
+          <div class="mt-auto pt-3 flex items-center gap-1 text-[10px] font-mono text-text-muted2 transition-all duration-300 group-hover/project:text-text-muted">
+            <span>View details</span>
+            <Icon name="lucide:arrow-right" class="w-3 h-3 transition-all duration-300 ease-out group-hover/project:translate-x-1 group-hover/project:opacity-80" />
           </div>
         </div>
 
-        <div class="text-text-muted2 text-xs border-t border-white/5 pt-2 mt-2">
-          <span class="text-white-dim">total</span> {{ projects.length }}
-          <span class="text-white-dim ml-1">◆</span>
-          Click to expand
+        <!-- Corner accent decoration -->
+        <div class="absolute bottom-0 right-0 w-16 h-16 opacity-0 transition-all duration-500 group-hover/project:opacity-100 pointer-events-none overflow-hidden rounded-br-2xl"
+          :class="{
+            'text-blue/10': project.accent === 'blue',
+            'text-purple/10': project.accent === 'purple',
+            'text-orange/10': project.accent === 'orange',
+            'text-green/10': project.accent === 'green',
+          }"
+        >
+          <svg viewBox="0 0 100 100" class="w-full h-full" fill="currentColor">
+            <polygon points="100,0 100,100 0,100" />
+          </svg>
         </div>
-      </div>
+      </NuxtLink>
     </div>
   </div>
 </template>
-
-<style scoped>
-.details-slide-enter-active,
-.details-slide-leave-active {
-  transition: all 0.25s ease;
-}
-
-.details-slide-enter-from,
-.details-slide-leave-to {
-  opacity: 0;
-  max-height: 0;
-  transform: translateY(-8px);
-}
-
-.details-slide-enter-to,
-.details-slide-leave-from {
-  opacity: 1;
-  max-height: 300px;
-  transform: translateY(0);
-}
-</style>

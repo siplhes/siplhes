@@ -5,7 +5,7 @@
       <h1 class="text-3xl md:text-4xl font-bold mb-2">Joseph Hurtado</h1>
       <p class="text-lg md:text-xl text-gray-700 mb-4">Full Stack Developer</p>
       <div class="text-sm text-gray-600 space-y-1">
-        <p>Email: siplhes@gmail.com</p>
+        <p>Email: {{ email }}</p>
         <p>LinkedIn: linkedin.com/in/siplhes</p>
         <p>GitHub: github.com/siplhes</p>
         <p>Location: Venezuela</p>
@@ -126,6 +126,9 @@
 </template>
 
 <script setup>
+const _email = "c2lwbGhlc0BnbWFpbC5jb20=";
+const email = computed(() => atob(_email));
+
 const printCV = () => {
   window.print()
 }

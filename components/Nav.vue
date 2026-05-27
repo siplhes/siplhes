@@ -1,52 +1,54 @@
 <script setup lang="ts">
 import LangChanger from "./LangChanger.vue";
-import ThemeChanger from "./ThemeChanger.vue";
-import { useCursorBlink } from "~/composables/useTerminal";
 
-const cursor = useCursorBlink(true);
+const navLinks = [
+  { label: "Home", key: "nav_title", path: "/" },
+  { label: "About", path: "/about" },
+];
+
+const { t } = useI18n();
 </script>
 
 <template>
-  <nav class="nav-terminal sticky top-0 z-50 bg-background/90 backdrop-blur-md">
+  <nav class="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
     <div class="container">
       <div class="flex items-center justify-between h-14">
-        <!-- Terminal prompt on left -->
-        <div class="flex items-center gap-1.5 font-mono text-sm">
-          <span class="text-text-muted">[</span>
-          <span class="text-white font-bold">siplhes</span>
-          <span class="text-text-muted">@</span>
-          <span class="text-text-muted2">portfolio</span>
-          <span class="text-text-muted">]</span>
-          <span class="text-text-muted2">~</span>
-          <span class="text-white">$</span>
-          <NuxtLink to="/" class="ml-1 text-text-muted hover:text-white transition-colors">
-            {{ $t("nav_title") }}
-          </NuxtLink>
-          <span
-            class="inline-block w-[6px] h-[15px] bg-white ml-1"
-            :class="{ 'opacity-0': !cursor.visible.value }"
-          ></span>
-        </div>
+        <!-- Logo / Brand -->
+        <NuxtLink to="/" class="flex items-center gap-2 group">
+          <span class="font-mono text-sm font-bold text-white tracking-tight">siplhes</span>
+          <span class="hidden sm:inline-block text-xs text-text-muted2 font-mono">~ $</span>
+          <span class="inline-block w-[5px] h-3.5 bg-white/70 animate-cursor-blink"></span>
+        </NuxtLink>
 
-        <!-- Nav links + controls on right -->
+        <!-- Nav links + controls -->
         <div class="flex items-center gap-1">
-          <NuxtLink to="/About" class="nav-link">
-            About
+          <NuxtLink
+            v-for="link in navLinks"
+            :key="link.path"
+            :to="link.path"
+            class="relative px-3 py-1.5 text-sm text-text-muted hover:text-text transition-colors font-mono"
+            :class="{ 'text-text': $route.path === link.path }"
+          >
+            {{ link.key ? t(link.key) : link.label }}
+            <span
+              v-if="$route.path === link.path"
+              class="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-[2px] bg-white/40 rounded-full"
+            ></span>
           </NuxtLink>
-          <NuxtLink to="/cv" target="_blank" class="nav-link">
-            {{ $t("my_cv") }}
+
+          <NuxtLink
+            to="/cv"
+            target="_blank"
+            class="ml-1 px-3 py-1.5 text-sm text-text-muted hover:text-text transition-colors font-mono"
+          >
+            {{ t("my_cv") }}
           </NuxtLink>
-          <div class="w-px h-5 bg-border mx-1"></div>
+
+          <div class="w-px h-4 bg-border-light mx-2"></div>
+
           <LangChanger />
-          <ThemeChanger />
         </div>
       </div>
     </div>
   </nav>
 </template>
-
-<style scoped>
-.nav-link {
-  font-family: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, monospace;
-}
-</style>
