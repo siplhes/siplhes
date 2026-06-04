@@ -7,7 +7,7 @@
         <div class="relative transition-transform duration-500 ease-out group-hover/card:scale-[1.02]">
           <div class="absolute -inset-0.5 bg-white/5 rounded-2xl blur-sm transition-all duration-500 group-hover/card:bg-white/10 group-hover/card:blur-md"></div>
           <NuxtImg
-            class="relative w-28 h-28 md:w-32 md:h-32 rounded-xl object-cover border border-border-light transition-all duration-500 group-hover/card:border-white/20"
+            class="relative w-36 h-36 md:w-36 md:h-36 rounded-xl object-cover border border-border-light transition-all duration-500 group-hover/card:border-white/20"
             :src="profile?.image || 'https://i.imgur.com/ZhPz5xP.png'"
             :alt="profile?.name || 'Joseph Hurtado'"
           />

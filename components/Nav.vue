@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import { useIsAdmin } from "~/composables/useIsAdmin";
+
 const navLinks = [
   { label: "Home", path: "/" },
   { label: "About", path: "/about" },
 ];
+
+const { isAdmin } = useIsAdmin();
 </script>
 
 <template>
@@ -38,6 +42,16 @@ const navLinks = [
             class="ml-1 px-3 py-1.5 text-sm text-text-muted hover:text-text transition-colors font-mono"
           >
             CV
+          </NuxtLink>
+
+          <!-- Admin indicator -->
+          <NuxtLink
+            v-if="isAdmin"
+            to="/admin"
+            class="ml-1 px-2 py-1 text-[10px] font-mono rounded border border-green/20 text-green/70 hover:bg-green/5 hover:text-green transition-all"
+          >
+            <Icon name="lucide:shield" class="w-3 h-3 inline-block mr-0.5 align-[-2px]" />
+            admin
           </NuxtLink>
         </div>
       </div>

@@ -24,12 +24,10 @@
       </div>
     </div>
 
-    <!-- Empty state -->
     <div v-else class="text-text-muted2 text-sm font-mono text-center py-8">
       Loading tech stack...
     </div>
 
-    <!-- Experience bar -->
     <div class="mt-5 pt-4 border-t border-border stagger-item" :style="{ '--item-index': 2 }">
       <div class="flex items-center justify-between text-xs text-text-muted2 font-mono">
         <span class="transition-colors duration-300 hover:text-text-muted">Primary stack</span>

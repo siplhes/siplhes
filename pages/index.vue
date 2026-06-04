@@ -46,23 +46,51 @@ import { onMounted } from "vue";
 import { usePortfolioData } from "~/composables/usePortfolioData";
 
 const { loadAll } = usePortfolioData();
+const siteUrl = useRuntimeConfig().public.siteUrl;
 
 onMounted(() => {
   loadAll();
 });
 
-useHead({
-  title: "Joseph Hurtado | Full Stack Developer",
-  meta: [{ name: "description", content: "Full Stack Developer — Modern Web Applications with Vue.js, Nuxt, Laravel & Node.js" }],
-});
-
 useSeoMeta({
   title: "Joseph Hurtado | Full Stack Developer",
   ogTitle: "Joseph Hurtado | Full Stack Developer",
-  description: "Full Stack Developer — Building modern web applications with Vue.js, Nuxt, Laravel & Node.js",
-  ogDescription: "Full Stack Developer — Building modern web applications with Vue.js, Nuxt, Laravel & Node.js",
+  description: "Full Stack Developer specializing in Vue.js, Nuxt, Laravel & Node.js. View my projects, tech stack, and get in touch for freelance work.",
+  ogDescription: "Full Stack Developer specializing in Vue.js, Nuxt, Laravel & Node.js. View my projects, tech stack, and get in touch for freelance work.",
   ogImage: "https://i.imgur.com/ZhPz5xP.png",
+  ogUrl: siteUrl,
   twitterCard: "summary_large_image",
+});
+
+useHead({
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: "Joseph Hurtado",
+        url: siteUrl,
+        jobTitle: "Full Stack Developer",
+        description: "Full Stack Developer specializing in Vue.js, Nuxt, Laravel & Node.js",
+        image: "https://i.imgur.com/ZhPz5xP.png",
+        email: "siplhes@gmail.com",
+        sameAs: [
+          "https://github.com/siplhes",
+          "https://linkedin.com/in/siplhes",
+        ],
+        address: {
+          "@type": "PostalAddress",
+          addressCountry: "VE",
+        },
+        knowsAbout: [
+          "Vue.js", "Nuxt.js", "Node.js", "Laravel",
+          "TypeScript", "TailwindCSS", "Firebase",
+          "PostgreSQL", "REST APIs", "Full Stack Development",
+        ],
+      }),
+    },
+  ],
 });
 
 // Refined scroll animation with performance optimizations

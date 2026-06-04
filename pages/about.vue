@@ -25,10 +25,18 @@
                 :alt="profile?.name || 'Joseph Hurtado'"
               />
             </div>
-            <div>
+            <div class="flex-1">
               <h1 class="text-lg font-bold text-white">{{ profile?.name || 'Joseph Hurtado' }}</h1>
               <p class="text-sm text-text-muted font-mono">Full Stack Developer</p>
             </div>
+            <NuxtLink
+              v-if="isAdmin"
+              to="/admin/profile"
+              class="shrink-0 px-2.5 py-1 text-[10px] font-mono rounded-md border border-green/20 text-green/70 hover:bg-green/10 hover:text-green transition-all"
+            >
+              <Icon name="lucide:pencil" class="w-3 h-3 inline-block mr-0.5 align-[-2px]" />
+              edit profile
+            </NuxtLink>
           </div>
 
           <!-- Content -->
@@ -85,8 +93,11 @@
 <script setup lang="ts">
 import { computed, onMounted } from "vue";
 import { usePortfolioData } from "~/composables/usePortfolioData";
+import { useIsAdmin } from "~/composables/useIsAdmin";
 
 const { profile, tech, loadAll } = usePortfolioData();
+const { isAdmin } = useIsAdmin();
+const siteUrl = useRuntimeConfig().public.siteUrl;
 
 onMounted(() => {
   loadAll();
@@ -104,8 +115,39 @@ const skillGroups = computed(() => {
   }));
 });
 
+useSeoMeta({
+  title: () => `About — ${profile.value?.name || 'Joseph Hurtado'} | Full Stack Developer`,
+  ogTitle: () => `About — ${profile.value?.name || 'Joseph Hurtado'}`,
+  description: () => profile.value?.description || 'Learn more about Joseph Hurtado — Full Stack Developer specializing in Vue.js, Nuxt, Laravel & Node.js.',
+  ogDescription: () => profile.value?.description || 'Full Stack Developer specializing in Vue.js, Nuxt, Laravel & Node.js.',
+  ogImage: () => profile.value?.image || 'https://i.imgur.com/ZhPz5xP.png',
+  ogUrl: `${siteUrl}/about`,
+  twitterCard: "summary_large_image",
+});
+
 useHead({
-  title: "About — Joseph Hurtado",
-  meta: [{ name: "description", content: "About Joseph Hurtado - Full Stack Developer" }],
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        name: "About Joseph Hurtado",
+        url: `${siteUrl}/about`,
+        mainEntity: {
+          "@type": "Person",
+          name: "Joseph Hurtado",
+          jobTitle: "Full Stack Developer",
+          description: profile.value?.description || 'Full Stack Developer specializing in Vue.js, Nuxt, Laravel & Node.js',
+          image: profile.value?.image || 'https://i.imgur.com/ZhPz5xP.png',
+          email: "siplhes@gmail.com",
+          knowsAbout: [
+            "Vue.js", "Nuxt.js", "Node.js", "Laravel",
+            "TypeScript", "TailwindCSS", "Firebase",
+          ],
+        },
+      }),
+    },
+  ],
 });
 </script>

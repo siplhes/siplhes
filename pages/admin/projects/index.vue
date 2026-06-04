@@ -36,10 +36,11 @@ const entries = computed(() => Object.entries(projects.value));
   <AdminShell
     terminal-title="admin@panel:~$"
     command="ls -la ./projects/"
+    back-to="/admin"
     :loading="loading"
   >
     <template #body>
-      <div class="actions-bar">
+      <div class="actions-bar">  
         <NuxtLink to="/admin/projects/create" class="term-btn new-btn">
           <span class="prompt">$</span> touch ./new-project/
         </NuxtLink>

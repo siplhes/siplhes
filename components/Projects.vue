@@ -2,12 +2,14 @@
 import { computed } from "vue";
 import { usePortfolioData } from "~/composables/usePortfolioData";
 import { useTechData } from "~/composables/useTechData";
+import { useIsAdmin } from "~/composables/useIsAdmin";
 
 const { projects: projectsData } = usePortfolioData();
 const { resolveTechSlugs } = useTechData();
+const { isAdmin } = useIsAdmin();
 
 const accentMap: Record<string, string> = {
-  adoptazulia: "blue",
+  adoptazulia: "green",
   nsfwclothes: "purple",
   bookachoose: "orange",
   skprt: "green",
@@ -48,6 +50,16 @@ const projects = computed(() => {
           'hover:border-green/20': project.accent === 'green',
         }"
       >
+        <!-- Admin edit shortcut -->
+        <NuxtLink
+          v-if="isAdmin"
+          :to="`/admin/projects/edit/${project.slug}`"
+          class="absolute top-3 right-3 z-10 px-2 py-1 text-[10px] font-mono rounded-md bg-green/10 border border-green/20 text-green/80 opacity-0 group-hover/project:opacity-100 transition-all duration-300 hover:bg-green/20 hover:text-green"
+          @click.stop
+        >
+          <Icon name="lucide:pencil" class="w-3 h-3 inline-block mr-0.5 align-[-2px]" />
+          edit
+        </NuxtLink>
         <!-- Accent line - animates from center on hover -->
         <div
           class="absolute top-0 left-1/2 -translate-x-1/2 w-0 h-[2px] rounded-full transition-all duration-500 ease-out group-hover/project:w-full group-hover/project:opacity-100"
@@ -74,7 +86,7 @@ const projects = computed(() => {
           <!-- Project image or placeholder -->
           <div
             v-if="project.img"
-            class="w-full h-32 rounded-lg overflow-hidden mb-3 bg-surface2"
+            class="w-full h-64 rounded-lg overflow-hidden mb-3 bg-surface2"
           >
             <NuxtImg
               :src="project.img"
@@ -120,10 +132,25 @@ const projects = computed(() => {
             </span>
           </div>
 
-          <!-- Arrow hint with enhanced animation -->
-          <div class="mt-auto pt-3 flex items-center gap-1 text-[10px] font-mono text-text-muted2 transition-all duration-300 group-hover/project:text-text-muted">
-            <span>View details</span>
-            <Icon name="lucide:arrow-right" class="w-3 h-3 transition-all duration-300 ease-out group-hover/project:translate-x-1 group-hover/project:opacity-80" />
+          <!-- Action CTA row -->
+          <div class="mt-auto pt-3 flex items-center gap-2">
+            <a
+              v-if="project.url"
+              :href="project.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              @click.stop
+              class="group/live inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white text-background text-[11px] font-semibold transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_12px_rgba(255,255,255,0.1)] active:scale-[0.96]"
+            >
+              <Icon name="lucide:arrow-up-right" class="w-3 h-3 transition-transform duration-300 group-hover/live:translate-x-0.5 group-hover/live:-translate-y-0.5" />
+              Live
+            </a>
+            <span
+              class="inline-flex items-center gap-1 text-[10px] font-mono text-text-muted2 transition-all duration-300 group-hover/project:text-text-muted group-hover/project:translate-x-0.5"
+            >
+              View details
+              <Icon name="lucide:arrow-right" class="w-3 h-3 transition-all duration-300 ease-out group-hover/project:translate-x-1 group-hover/project:opacity-80" />
+            </span>
           </div>
         </div>
 

@@ -14,14 +14,22 @@
           </NuxtLink>
         </div>
 
-        <!-- Man page header -->
         <div class="terminal-window">
+          <!-- Man page header -->
           <div class="terminal-header">
-            <span class="terminal-dot close"></span>
-            <span class="terminal-dot minimize"></span>
-            <span class="terminal-dot maximize"></span>
-            <span class="terminal-title">man {{ project.slug || route.params.slug }}</span>
-          </div>
+              <span class="terminal-dot close"></span>
+              <span class="terminal-dot minimize"></span>
+              <span class="terminal-dot maximize"></span>
+              <span class="terminal-title">man {{ project.slug || route.params.slug }}</span>
+              <NuxtLink
+                v-if="isAdmin"
+                :to="`/admin/projects/edit/${route.params.slug}`"
+                class="ml-auto px-2 py-0.5 text-[10px] font-mono rounded border border-green/20 text-green/70 hover:bg-green/10 hover:text-green transition-all"
+              >
+                <Icon name="lucide:pencil" class="w-3 h-3 inline-block mr-0.5 align-[-2px]" />
+                edit project
+              </NuxtLink>
+            </div>
           <div class="terminal-body">
             <!-- Man page name -->
             <div class="man-header">
@@ -148,19 +156,21 @@
               <div class="man-section">
                 <h2 class="man-section-title">SEE ALSO</h2>
                 <div class="flex flex-wrap gap-3">
-                  <NuxtLink
-                    :to="project.url"
+                  <a
+                    :href="project.url"
                     target="_blank"
-                    class="btn btn-outline text-sm"
+                    rel="noopener noreferrer"
+                    class="group/cta inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-white text-background text-sm font-semibold transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] active:scale-[0.97]"
                   >
-                    <Icon name="uil:external-link-alt" class="w-4 h-4 mr-1" />
+                    <Icon name="uil:external-link-alt" class="w-4 h-4 transition-transform duration-300 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5" />
                     Live Project
-                  </NuxtLink>
+                    <Icon name="lucide:arrow-up-right" class="w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-300 group-hover/cta:opacity-100 group-hover/cta:translate-x-0" />
+                  </a>
                   <NuxtLink
                     to="/"
-                    class="btn btn-ghost text-sm"
+                    class="group/cta inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-border-light text-text-muted text-sm transition-all duration-300 hover:text-text hover:border-white/20 hover:bg-white/[0.04] active:scale-[0.97]"
                   >
-                    <Icon name="uil:arrow-left" class="w-4 h-4 mr-1" />
+                    <Icon name="lucide:arrow-left" class="w-4 h-4 transition-transform duration-300 group-hover/cta:-translate-x-0.5" />
                     Back to Portfolio
                   </NuxtLink>
                 </div>
@@ -193,10 +203,13 @@
 import { computed, onMounted } from "vue";
 import { usePortfolioData } from "~/composables/usePortfolioData";
 import { useTechData } from "~/composables/useTechData";
+import { useIsAdmin } from "~/composables/useIsAdmin";
 
 const route = useRoute();
 const { projects: projectsData, loadAll } = usePortfolioData();
 const { getTechBySlug } = useTechData();
+const { isAdmin } = useIsAdmin();
+const siteUrl = useRuntimeConfig().public.siteUrl;
 
 onMounted(() => {
   loadAll();
@@ -221,12 +234,36 @@ function resolveTechSlug(slug: string): string {
 }
 
 useSeoMeta({
-  title: computed(() => (project.value?.seoTitle as string) || "Project — Joseph Hurtado"),
-  ogTitle: computed(() => (project.value?.seoTitle as string) || "Project"),
-  description: computed(() => `Project developed by Joseph Hurtado — ${project.value?.title || ""}`),
-  ogDescription: computed(() => `Project developed by Joseph Hurtado`),
-  ogImage: computed(() => heroImage.value || "https://example.com/image.png"),
+  title: computed(() => (project.value?.seoTitle as string) || `${project.value?.title || 'Project'} — Joseph Hurtado`),
+  ogTitle: computed(() => (project.value?.seoTitle as string) || project.value?.title || 'Project'),
+  description: computed(() => project.value?.purpose || project.value?.description || `Project developed by Joseph Hurtado — ${project.value?.title || ''}`),
+  ogDescription: computed(() => project.value?.purpose || project.value?.description || `Project developed by Joseph Hurtado — ${project.value?.title || ''}`),
+  ogImage: computed(() => heroImage.value || 'https://i.imgur.com/ZhPz5xP.png'),
+  ogUrl: computed(() => `${siteUrl}/project/${route.params.slug}`),
   twitterCard: "summary_large_image",
+});
+
+useHead({
+  script: computed(() => [
+    {
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        name: project.value?.title || '',
+        description: project.value?.purpose || project.value?.description || '',
+        url: project.value?.url || `${siteUrl}/project/${route.params.slug}`,
+        image: heroImage.value || undefined,
+        author: {
+          "@type": "Person",
+          name: "Joseph Hurtado",
+          url: siteUrl,
+        },
+        keywords: project.value?.techs?.join(', ') || undefined,
+        dateCreated: undefined,
+      }),
+    },
+  ]),
 });
 </script>
 

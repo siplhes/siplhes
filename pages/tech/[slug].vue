@@ -19,6 +19,14 @@
           <span class="terminal-dot minimize"></span>
           <span class="terminal-dot maximize"></span>
           <span class="terminal-title">man {{ techInfo.slug }}</span>
+          <NuxtLink
+            v-if="isAdmin"
+            to="/admin/tech"
+            class="ml-auto px-2 py-0.5 text-[10px] font-mono rounded border border-green/20 text-green/70 hover:bg-green/10 hover:text-green transition-all"
+          >
+            <Icon name="lucide:pencil" class="w-3 h-3 inline-block mr-0.5 align-[-2px]" />
+            edit tech
+          </NuxtLink>
         </div>
         <div class="terminal-body">
           <!-- Tech header -->
@@ -138,10 +146,13 @@
 
 <script setup lang="ts">
 import { computed, onMounted } from "vue";
+import { useIsAdmin } from "~/composables/useIsAdmin";
 
 const route = useRoute();
 const { projects: projectsData, loadAll } = usePortfolioData();
 const { getTechBySlug, resolveTechSlugs } = useTechData();
+const { isAdmin } = useIsAdmin();
+const siteUrl = useRuntimeConfig().public.siteUrl;
 
 onMounted(() => {
   loadAll();
@@ -162,6 +173,10 @@ function resolveSlug(s: string): string {
 
 useSeoMeta({
   title: computed(() => `${techInfo.value?.label || 'Tech Stack'} — Joseph Hurtado`),
-  description: computed(() => `Projects using ${techInfo.value?.label || 'technology'} — Joseph Hurtado Portfolio`),
+  ogTitle: computed(() => `${techInfo.value?.label || 'Tech Stack'} — Joseph Hurtado`),
+  description: computed(() => `Projects and experience with ${techInfo.value?.label || 'technology'} — Joseph Hurtado Portfolio. ${techInfo.value?.description?.desc || ''}`),
+  ogDescription: computed(() => `Projects and experience with ${techInfo.value?.label || 'technology'} — Joseph Hurtado Portfolio`),
+  ogUrl: computed(() => `${siteUrl}/tech/${slug.value}`),
+  twitterCard: "summary_large_image",
 });
 </script>

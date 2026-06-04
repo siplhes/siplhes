@@ -32,17 +32,25 @@
 
     <!-- Social Links -->
     <div class="section-label mb-3 stagger-item" :style="{ '--item-index': 1 }">Social</div>
-    <div class="space-y-1.5 stagger-item" :style="{ '--item-index': 2 }">
+    <div class="space-y-1 stagger-item" :style="{ '--item-index': 2 }">
       <NuxtLink
-        v-for="link in socialLinks"
+        v-for="(link, idx) in socialLinks"
         :key="link.label"
         :to="link.url"
         target="_blank"
-        class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-text-muted hover:text-text hover:bg-white/[0.03] transition-all duration-200 group/link"
+        rel="noopener noreferrer"
+        class="group/link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-300 hover:bg-white/[0.04] active:scale-[0.98]"
+        :class="socialAccentColors[idx % socialAccentColors.length]?.hover || 'hover:text-text'"
       >
-        <Icon :name="link.icon" class="w-4 h-4 shrink-0 transition-all duration-300 group-hover/link:scale-110 group-hover/link:text-white" />
-        <span class="transition-all duration-300 group-hover/link:translate-x-0.5">{{ link.label }}</span>
-        <Icon name="lucide:external-link" class="w-3 h-3 ml-auto text-text-muted2 shrink-0 transition-all duration-300 group-hover/link:translate-x-0.5 group-hover/link:text-text-muted" />
+        <span class="relative flex items-center justify-center w-7 h-7 rounded-lg transition-all duration-300 group-hover/link:scale-110"
+          :class="socialAccentColors[idx % socialAccentColors.length]?.bg || 'bg-white/5'"
+        >
+          <Icon :name="link.icon" class="w-3.5 h-3.5 transition-all duration-300 group-hover/link:scale-110"
+            :class="socialAccentColors[idx % socialAccentColors.length]?.icon || 'text-text-muted'"
+          />
+        </span>
+        <span class="flex-1 font-medium transition-all duration-300 group-hover/link:translate-x-0.5">{{ link.label }}</span>
+        <Icon name="lucide:arrow-up-right" class="w-3.5 h-3.5 opacity-0 -translate-x-1 transition-all duration-300 group-hover/link:opacity-60 group-hover/link:translate-x-0 text-text-muted2" />
       </NuxtLink>
     </div>
 
@@ -70,6 +78,15 @@ import { usePortfolioData } from "~/composables/usePortfolioData";
 
 const { $toast } = useNuxtApp();
 const { profile, social } = usePortfolioData();
+
+const socialAccentColors = [
+  { bg: 'bg-[#0077b5]/10', icon: 'text-[#0077b5]', hover: 'hover:text-[#0077b5]' }, // LinkedIn blue
+  { bg: 'bg-[#f0f0f0]/10', icon: 'text-[#e0e0e0]', hover: 'hover:text-[#e0e0e0]' }, // GitHub white
+  { bg: 'bg-[#1da1f2]/10', icon: 'text-[#1da1f2]', hover: 'hover:text-[#1da1f2]' }, // Twitter blue
+  { bg: 'bg-[#ff0000]/10', icon: 'text-[#ff0000]', hover: 'hover:text-[#ff0000]' }, // YouTube red
+  { bg: 'bg-purple/10', icon: 'text-purple', hover: 'hover:text-purple' }, // Generic purple
+  { bg: 'bg-green/10', icon: 'text-green', hover: 'hover:text-green' }, // Generic green
+];
 
 const socialLinks = computed(() => {
   if (!social.value) return [];

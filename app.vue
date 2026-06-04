@@ -11,6 +11,9 @@
 
     <!-- Page Content -->
     <NuxtPage />
+
+    <!-- Admin floating shortcuts (only visible for admin user) -->
+    <AdminBar />
   </main>
 </template>
 
