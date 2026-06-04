@@ -13,14 +13,14 @@
           <About />
         </div>
 
-        <!-- Tech Stack — full width, enters third -->
-        <div class="bento-item bento-wide entrance-card" style="--stagger: 2">
-          <TechStack />
+        <!-- Projects Section — enters third -->
+        <div class="bento-item bento-projects entrance-card" style="--stagger: 2">
+          <Projects />
         </div>
 
-        <!-- Projects Section — enters fourth -->
-        <div class="bento-item bento-projects entrance-card" style="--stagger: 3">
-          <Projects />
+        <!-- Tech Stack — full width, enters fourth -->
+        <div class="bento-item bento-wide entrance-card" style="--stagger: 3">
+          <TechStack />
         </div>
       </div>
 
@@ -42,6 +42,15 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
+import { usePortfolioData } from "~/composables/usePortfolioData";
+
+const { loadAll } = usePortfolioData();
+
+onMounted(() => {
+  loadAll();
+});
+
 useHead({
   title: "Joseph Hurtado | Full Stack Developer",
   meta: [{ name: "description", content: "Full Stack Developer — Modern Web Applications with Vue.js, Nuxt, Laravel & Node.js" }],

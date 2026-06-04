@@ -21,12 +21,12 @@
               <div class="absolute -inset-0.5 bg-white/5 rounded-xl blur-sm"></div>
               <NuxtImg
                 class="relative w-14 h-14 rounded-xl object-cover border border-border-light"
-                src="https://i.imgur.com/ZhPz5xP.png"
-                alt="Joseph Hurtado"
+                :src="profile?.image || 'https://i.imgur.com/ZhPz5xP.png'"
+                :alt="profile?.name || 'Joseph Hurtado'"
               />
             </div>
             <div>
-              <h1 class="text-lg font-bold text-white">Joseph Hurtado</h1>
+              <h1 class="text-lg font-bold text-white">{{ profile?.name || 'Joseph Hurtado' }}</h1>
               <p class="text-sm text-text-muted font-mono">Full Stack Developer</p>
             </div>
           </div>
@@ -36,14 +36,7 @@
             <!-- About text -->
             <div class="space-y-3 text-sm text-text/80 leading-relaxed">
               <p>
-                Full Stack Developer with 7+ years of experience building web applications.
-                Over 3 years building with <span class="text-white font-medium">Laravel</span>
-                and in love with <span class="text-white font-medium">Vue.js</span> for 2+ years.
-              </p>
-              <p>
-                I specialize in crafting clean, efficient, and user-friendly applications
-                using modern JavaScript/TypeScript ecosystems. I believe in writing code
-                that is maintainable, testable, and a pleasure to work with.
+                {{ profile?.description || '' }}
               </p>
             </div>
 
@@ -58,7 +51,7 @@
                   <h3 class="text-xs font-mono text-text-muted2">{{ group.label }}</h3>
                   <div class="flex flex-wrap gap-1.5">
                     <span v-for="(item, ii) in group.items" :key="ii" class="tech-tag text-[11px] py-1">
-                      {{ item }}
+                      {{ item.label }}
                     </span>
                   </div>
                 </div>
@@ -69,7 +62,7 @@
             <div class="h-px bg-border"></div>
 
             <!-- Status -->
-            <div class="flex items-center gap-4 text-sm">
+            <div v-if="profile?.available" class="flex items-center gap-4 text-sm">
               <div class="flex items-center gap-2">
                 <span class="status-dot"></span>
                 <span class="text-green/80 font-mono text-xs">Available for freelance & collaboration</span>
@@ -90,27 +83,29 @@
 </template>
 
 <script setup lang="ts">
+import { computed, onMounted } from "vue";
+import { usePortfolioData } from "~/composables/usePortfolioData";
+
+const { profile, tech, loadAll } = usePortfolioData();
+
+onMounted(() => {
+  loadAll();
+});
+
+const skillGroups = computed(() => {
+  if (!tech.value?.categories) {
+    return [];
+  }
+  return tech.value.categories.map((cat) => ({
+    label: cat.label,
+    items: (cat.items || []).map((item: any) =>
+      typeof item === 'string' ? { label: item, slug: '' } : item
+    ),
+  }));
+});
+
 useHead({
   title: "About — Joseph Hurtado",
   meta: [{ name: "description", content: "About Joseph Hurtado - Full Stack Developer" }],
 });
-
-const skillGroups = [
-  {
-    label: "Frontend",
-    items: ["Vue.js", "Nuxt.js", "TailwindCSS", "Inertia.js", "Alpine.js"],
-  },
-  {
-    label: "Backend",
-    items: ["Laravel", "Node.js", "Express", "Fastify", "PHP"],
-  },
-  {
-    label: "Database",
-    items: ["MySQL", "PostgreSQL", "Firebase RTDB"],
-  },
-  {
-    label: "Design & Tools",
-    items: ["Figma", "UI/UX", "Git", "Docker", "AWS"],
-  },
-];
 </script>

@@ -2,13 +2,13 @@
   <div class="min-h-screen bg-white text-black p-8 md:p-16 max-w-4xl mx-auto">
     <!-- Header -->
     <header class="mb-8">
-      <h1 class="text-3xl md:text-4xl font-bold mb-2">Joseph Hurtado</h1>
+      <h1 class="text-3xl md:text-4xl font-bold mb-2">{{ profile?.name || 'Joseph Hurtado' }}</h1>
       <p class="text-lg md:text-xl text-gray-700 mb-4">Full Stack Developer</p>
       <div class="text-sm text-gray-600 space-y-1">
         <p>Email: {{ email }}</p>
         <p>LinkedIn: linkedin.com/in/siplhes</p>
         <p>GitHub: github.com/siplhes</p>
-        <p>Location: Venezuela</p>
+        <p>Location: {{ profile?.location || 'Venezuela' }}</p>
       </div>
     </header>
 
@@ -37,7 +37,7 @@
     <!-- Experience -->
     <section class="mb-8">
       <h2 class="text-xl font-bold border-b-2 border-black mb-4 pb-2">WORK EXPERIENCE</h2>
-      
+
       <div class="mb-6">
         <h3 class="font-bold text-lg">Full Stack Developer</h3>
         <p class="text-gray-600 text-sm mb-2">Freelance | [Current]</p>
@@ -64,7 +64,7 @@
     <!-- Projects -->
     <section class="mb-8">
       <h2 class="text-xl font-bold border-b-2 border-black mb-4 pb-2">PROJECTS</h2>
-      
+
       <div class="mb-6">
         <h3 class="font-bold text-lg">AdoptAzulia</h3>
         <p class="text-gray-600 text-sm mb-2">https://adoptazulia.org.ve</p>
@@ -96,7 +96,7 @@
     <!-- Education -->
     <section class="mb-8">
       <h2 class="text-xl font-bold border-b-2 border-black mb-4 pb-2">EDUCATION</h2>
-      
+
       <div class="mb-4">
         <h3 class="font-bold text-lg">[Degree Name]</h3>
         <p class="text-gray-600 text-sm">[University Name] | [Graduation Year]</p>
@@ -125,9 +125,20 @@
   </div>
 </template>
 
-<script setup>
-const _email = "c2lwbGhlc0BnbWFpbC5jb20=";
-const email = computed(() => atob(_email));
+<script setup lang="ts">
+import { computed, onMounted } from "vue";
+import { usePortfolioData } from "~/composables/usePortfolioData";
+
+const { profile, loadAll } = usePortfolioData();
+
+onMounted(() => {
+  loadAll();
+});
+
+const email = computed(() => {
+  if (profile.value?.email) return profile.value.email;
+  return atob("c2lwbGhlc0BnbWFpbC5jb20=");
+});
 
 const printCV = () => {
   window.print()
@@ -144,7 +155,7 @@ useHead({
   .no-print {
     display: none;
   }
-  
+
   body {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;

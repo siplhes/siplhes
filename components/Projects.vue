@@ -1,48 +1,31 @@
 <script setup lang="ts">
-const { t } = useI18n();
+import { computed } from "vue";
+import { usePortfolioData } from "~/composables/usePortfolioData";
+import { useTechData } from "~/composables/useTechData";
 
-const projects = [
-  {
-    slug: 'adoptazulia',
-    img: "/images/az.webp",
-    title: t("az.title"),
-    description: t("az.description"),
-    url: "https://adoptazulia.org.ve",
-    more: "/project/adoptazulia",
-    techs: ["Nuxt.js", "Vue.js", "TailwindCSS", "Firebase", "AWS"],
-    accent: "blue",
-  },
-  {
-    slug: 'nsfwclothes',
-    img: "/images/nsfw.webp",
-    title: t("nsfw.title"),
-    description: t("nsfw.description"),
-    url: "https://nsfwclothes.vercel.app/",
-    more: "/project/nsfwclothes",
-    techs: ["Nuxt.js", "Vue.js", "TailwindCSS", "Fastify", "MySQL"],
-    accent: "purple",
-  },
-  {
-    slug: 'bookachoose',
-    img: "/images/book.webp",
-    title: t("bac.title"),
-    description: t("bac.description"),
-    url: "https://bookachoose.vercel.app",
-    more: "/project/bookachoose",
-    techs: ["Nuxt.js", "Vue.js", "TailwindCSS", "Firebase", "Express"],
-    accent: "orange",
-  },
-  {
-    slug: 'skprt',
-    img: "",
-    title: t("skprt.title"),
-    description: t("skprt.description"),
-    url: "#",
-    more: "/project/skprt",
-    techs: ["Nuxt.js", "TypeScript", "PostgreSQL", "Stripe", "Docker"],
-    accent: "green",
-  },
-];
+const { projects: projectsData } = usePortfolioData();
+const { resolveTechSlugs } = useTechData();
+
+const accentMap: Record<string, string> = {
+  adoptazulia: "blue",
+  nsfwclothes: "purple",
+  bookachoose: "orange",
+  skprt: "green",
+};
+
+const projects = computed(() => {
+  if (!projectsData.value) return [];
+  return Object.entries(projectsData.value).map(([slug, p]) => ({
+    slug,
+    img: p.images?.[p.primaryImageIndex ?? 0] || p.logo?.src || "",
+    title: p.title || slug,
+    description: p.description || "",
+    url: p.url,
+    more: `/project/${slug}`,
+    techs: resolveTechSlugs(p.techs || []),
+    accent: accentMap[slug] || "blue",
+  }));
+});
 </script>
 
 <template>
@@ -52,7 +35,7 @@ const projects = [
       <span class="text-xs text-text-muted2 font-mono">{{ projects.length }} total</span>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 stagger-item" :style="{ '--item-index': 1 }">
+    <div v-if="projects.length" class="grid grid-cols-1 md:grid-cols-2 gap-4 stagger-item" :style="{ '--item-index': 1 }">
       <NuxtLink
         v-for="(project, index) in projects"
         :key="index"
@@ -121,14 +104,14 @@ const projects = [
 
           <!-- Tech tags -->
           <div class="flex flex-wrap gap-1 mt-3">
-            <span
+            <TechTag
               v-for="(tech, ti) in project.techs.slice(0, 3)"
               :key="ti"
-              class="inline-flex items-center px-2 py-0.5 text-[10px] font-mono rounded-md bg-white/[0.03] border border-white/[0.06] text-text-muted2 transition-all duration-200 hover:scale-105 hover:-translate-y-0.5"
+              :slug="tech.slug"
+              :label="tech.label"
               :style="{ transitionDelay: `${ti * 40}ms` }"
-            >
-              {{ tech }}
-            </span>
+              size="xs"
+            />
             <span
               v-if="project.techs.length > 3"
               class="inline-flex items-center px-2 py-0.5 text-[10px] font-mono rounded-md text-text-muted2"
@@ -158,6 +141,11 @@ const projects = [
           </svg>
         </div>
       </NuxtLink>
+    </div>
+
+    <!-- Empty state -->
+    <div v-else class="text-text-muted2 text-sm font-mono text-center py-8">
+      Loading projects...
     </div>
   </div>
 </template>

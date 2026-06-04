@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import LangChanger from "./LangChanger.vue";
-
 const navLinks = [
-  { label: "Home", key: "nav_title", path: "/" },
+  { label: "Home", path: "/" },
   { label: "About", path: "/about" },
 ];
-
-const { t } = useI18n();
 </script>
 
 <template>
@@ -29,7 +25,7 @@ const { t } = useI18n();
             class="relative px-3 py-1.5 text-sm text-text-muted hover:text-text transition-colors font-mono"
             :class="{ 'text-text': $route.path === link.path }"
           >
-            {{ link.key ? t(link.key) : link.label }}
+            {{ link.label }}
             <span
               v-if="$route.path === link.path"
               class="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-[2px] bg-white/40 rounded-full"
@@ -41,12 +37,8 @@ const { t } = useI18n();
             target="_blank"
             class="ml-1 px-3 py-1.5 text-sm text-text-muted hover:text-text transition-colors font-mono"
           >
-            {{ t("my_cv") }}
+            CV
           </NuxtLink>
-
-          <div class="w-px h-4 bg-border-light mx-2"></div>
-
-          <LangChanger />
         </div>
       </div>
     </div>

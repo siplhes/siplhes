@@ -16,10 +16,10 @@
         </button>
         <Icon name="lucide:copy" class="w-3 h-3 text-text-muted2/0 ml-auto transition-all duration-300 group-hover/item:text-text-muted2/70 group-hover/item:opacity-100 shrink-0" />
       </div>
-      
+
       <div class="flex items-center gap-3 text-sm px-2 -mx-2 py-1.5 rounded-xl transition-all duration-300 hover:bg-white/[0.03] hover:pl-3 group/item">
         <Icon name="lucide:map-pin" class="w-4 h-4 text-text-muted2 shrink-0 transition-all duration-300 group-hover/item:text-orange group-hover/item:scale-110" />
-        <span class="text-text/70">Venezuela</span>
+        <span class="text-text/70">{{ profile?.location || 'Venezuela' }}</span>
       </div>
       <div class="flex items-center gap-3 text-sm px-2 -mx-2 py-1.5 rounded-xl transition-all duration-300 hover:bg-white/[0.03] hover:pl-3 group/item">
         <Icon name="lucide:briefcase" class="w-4 h-4 text-text-muted2 shrink-0 transition-all duration-300 group-hover/item:text-green group-hover/item:scale-110" />
@@ -64,18 +64,32 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { computed } from "vue";
+import { usePortfolioData } from "~/composables/usePortfolioData";
+
 const { $toast } = useNuxtApp();
+const { profile, social } = usePortfolioData();
 
-const socialLinks = [
-  { label: "GitHub", url: "https://github.com/siplhes", icon: "lucide:github" },
-  { label: "LinkedIn", url: "https://www.linkedin.com/in/siplhes/", icon: "lucide:linkedin" },
-  { label: "WhatsApp", url: "https://wa.me/584127698781", icon: "lucide:message-circle" },
-  { label: "Behance", url: "https://behance.com/siplhes", icon: "lucide:palette" },
-];
+const socialLinks = computed(() => {
+  if (!social.value) return [];
+  return Object.entries(social.value).map(([key, link]) => ({
+    label: link.label,
+    url: link.url,
+    icon: mapIcon(link.icon),
+  }));
+});
 
-const _email = "c2lwbGhlc0BnbWFpbC5jb20=";
-const email = computed(() => atob(_email));
+function mapIcon(icon: string): string {
+  // Convert uil: prefix to lucide: for the icon component
+  if (icon.startsWith("uil:")) return icon.replace("uil:", "lucide:");
+  return icon;
+}
+
+const email = computed(() => {
+  if (profile.value?.email) return profile.value.email;
+  return atob("c2lwbGhlc0BnbWFpbC5jb20=");
+});
 
 const copyToClipboard = () => {
   navigator.clipboard.writeText(email.value);

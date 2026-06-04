@@ -17,8 +17,25 @@ export default defineNuxtConfig({
     "@nuxt/scripts",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/color-mode",
-    "@nuxtjs/i18n",
   ],
+  runtimeConfig: {
+    s3: {
+      accessKey: "",
+      secretKey: "",
+      region: "us-east-2",
+      bucket: "",
+    },
+    public: {
+      firebaseApiKey: "",
+      firebaseAuthDomain: "",
+      firebaseDatabaseUrl: "",
+      firebaseProjectId: "",
+      firebaseStorageBucket: "",
+      firebaseMessagingSenderId: "",
+      firebaseAppId: "",
+    },
+  },
+
   colorMode: {
     preference: "dark",
     dataValue: "theme",
@@ -29,19 +46,5 @@ export default defineNuxtConfig({
     viewer: true,
     exposeConfig: true,
   },
-  i18n: {
-    strategy: "no_prefix",
-    vueI18n: "~/i18n.config.ts",
-    locales: ["en", "es"],
-    defaultLocale: "en",
-    bundle: {
-      optimizeTranslationDirective: false,
-    },
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: "i18n_redirected",
-      redirectOn: "root",
-      alwaysRedirect: true,
-    },
-  },
+
 });
