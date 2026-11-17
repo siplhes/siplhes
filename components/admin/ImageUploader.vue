@@ -37,7 +37,7 @@
     <!-- Upload progress -->
     <div v-if="uploading" class="upload-progress">
       <span class="upload-spinner">⟳</span>
-      <span>Uploading to S3...</span>
+      <span>Uploading to Vercel Blob...</span>
     </div>
 
     <!-- Error -->

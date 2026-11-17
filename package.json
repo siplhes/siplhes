@@ -11,15 +11,14 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.1059.0",
     "@nuxt/fonts": "^0.11.0",
     "@nuxt/icon": "^1.11.0",
     "@nuxt/image": "^1.10.0",
     "@nuxt/scripts": "^0.11.2",
     "@nuxtjs/color-mode": "^3.5.2",
-
     "@nuxtjs/tailwindcss": "^6.13.2",
     "@unhead/vue": "^2.0.0",
+    "@vercel/blob": "^2.9.0",
     "eslint-plugin-tailwindcss": "^3.18.0",
     "firebase": "^12.14.0",
     "glob": "^11.0.1",

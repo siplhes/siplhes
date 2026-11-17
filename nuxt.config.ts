@@ -45,12 +45,6 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
   ],
   runtimeConfig: {
-    s3: {
-      accessKey: "",
-      secretKey: "",
-      region: "us-east-2",
-      bucket: "",
-    },
     public: {
       siteUrl: "https://siplhes.com",
       firebaseApiKey: "",

@@ -1,9 +1,7 @@
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3"
+import { put } from "@vercel/blob"
 import { randomUUID } from "node:crypto"
 
 export default defineEventHandler(async (event) => {
-  const config = useRuntimeConfig()
-
   const form = await readMultipartFormData(event)
   if (!form) throw createError({ statusCode: 400, statusMessage: "No data received" })
 
@@ -20,24 +18,10 @@ export default defineEventHandler(async (event) => {
   const ext = file.filename?.split(".").pop() || "png"
   const key = `portfolio/${randomUUID()}.${ext}`
 
-  const s3 = new S3Client({
-    region: config.s3.region,
-    credentials: {
-      accessKeyId: config.s3.accessKey,
-      secretAccessKey: config.s3.secretKey,
-    },
+  const blob = await put(key, file.data, {
+    access: "public",
+    contentType: mime || "image/png",
   })
 
-  await s3.send(
-    new PutObjectCommand({
-      Bucket: config.s3.bucket,
-      Key: key,
-      Body: file.data,
-      ContentType: mime || "image/png",
-    })
-  )
-
-  const url = `https://${config.s3.bucket}.s3.${config.s3.region}.amazonaws.com/${key}`
-
-  return { url }
+  return { url: blob.url }
 })
